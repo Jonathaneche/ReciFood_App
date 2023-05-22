@@ -1,9 +1,11 @@
 <template>
-<h1>Meal details view</h1>
+    <NavBar />
+    <MealDetails />
 </template>
 
 <script setup>
-
+import NavBar from '@/components/NavBar.vue';
+import MealDetails from '@/components/MealDetails.vue';
 </script>
 
 <style lang="scss" scoped>
