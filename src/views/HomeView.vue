@@ -16,3 +16,7 @@ import MealsCategory from '../components/MealsCategory.vue';
 import MultipleMealCards from '../components/MultipleMealCards.vue';
 
 </script>
+
+<style lang="scss" scoped>
+
+</style>
