@@ -1,13 +1,7 @@
 <template>
   <div class="row p-5 card-container bg-light">
-    <MealCard />
-    <MealCard />
-    <MealCard />
-    <MealCard />
-    <MealCard />
-    <MealCard />
-    <MealCard />
-    <MealCard />
+
+    <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
   </div>
 
   <router-view />
@@ -15,7 +9,22 @@
 
 <script setup>
 import MealCard from '@/components/MealCard.vue'
+import MealService from '@/services/MealService';
+import {ref, onMounted} from 'vue';
 
+const meals = ref([]);
+
+
+onMounted(async () => {
+  for (let i = 0; i < 8; i++) {
+    try {
+      const response = await MealService.getRandomMeals();
+      meals.value.push(...response);
+    } catch (error) {
+      console.error('Error retrieving random meals:', error);
+    }
+  }
+});
 </script>
 
 
