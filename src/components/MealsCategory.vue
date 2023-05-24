@@ -4,53 +4,51 @@
         <div class="category-container">
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa-duotone fa-steak"></i>
+                    <img src="../assets/img/iconos/beef.png" alt="Beef food icon" class="category_icono"/>
                 </div>
                 <span class="category-name">Beef</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <font-awesome-icon :icon="['fas', 'turkey']" />
+                    <img src="../assets/img/iconos/chicken.png" alt="Chicken food icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Chicken</span>
-
-                
+                <span class="category-name">Chicken</span>               
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/pork.png" alt="Pork food icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Pork</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/seafood.png" alt="Seafood icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Seafood</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/breakfast.png" alt="Breakfast icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Breakfast</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/pasta.png" alt="Pasta icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Pasta</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/vegetarian.png" alt="Vegetarian icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Vegetarian</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <img src="../assets/img/iconos/dessert.png" alt="Dessert icon" class="category_icono"/>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Dessert</span>
             </div>
         </div>
     </div>
@@ -86,8 +84,8 @@
 }
 
 .circle {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
   background-color: #eaeaea;
   display: flex;
@@ -97,6 +95,9 @@
   transition: background-color 0.3s ease;
 }
 
+.category_icono{
+    width: 2rem;
+}
 
 .category-name {
   font-size: 14px;
