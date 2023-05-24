@@ -4,15 +4,17 @@
         <div class="category-container">
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <i class="fa-duotone fa-steak"></i>
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Beef</span>
             </div>
             <div class="category-button">
                 <div class="circle">
-                    <i class="fa fa-cutlery"></i>
+                    <font-awesome-icon :icon="['fas', 'turkey']" />
                 </div>
-                <span class="category-name">Categoría</span>
+                <span class="category-name">Chicken</span>
+
+                
             </div>
             <div class="category-button">
                 <div class="circle">
