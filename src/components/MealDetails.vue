@@ -1,17 +1,20 @@
 <template>
     <div class="meal_details_container mb-5">
-        <h1 class="meal_details_title p-3 mt-4">{{ props.meal.strMeal }}</h1>
+        <h1 class="meal_details_title p-3 mt-4">Detalles de la receta</h1>
         
         <div class="meal_details_card">
             <div class="card_details_imagen_info">
-                <img s:src="meal.strMealThumb" :alt="meal.strMeal" class="meal_details_image mb-3 ">
+                <img src="../assets/img/chocolate-veggie-cake.jpg" alt="Veggie chocolate cake" class="meal_details_image mb-3 ">
                 
                 <div class="meal_details_group_info">
                     <div>
-                        <strong >Category:</strong> {{ props.meal.strCategory }}
+                        <strong >Category:</strong> Postre
                     </div>
                     <div>
-                        <strong >Area:</strong> {{ props.meal.strArea }}
+                        <strong >Area:</strong> España
+                    </div>
+                    <div>
+                        <strong >Tags:</strong> Chocolate
                     </div>
                 </div>
             </div>
@@ -20,45 +23,48 @@
                 <div class="meal_details_ingredients">
                     <h2 class="meal_details_ingredients_title">Ingredients</h2>
                     <ul>
-                        <template v-for="(el, ind) of new Array(21)" :key="ind">
-                            <li v-if="props.meal[`strIngredient${ind + 1}`]">
-                                {{ ind + 1 }}. {{ props.meal[`strIngredient${ind + 1}`] }}
-                            </li>
-                        </template>
+                        <li>Ingrediente 1</li>
+                        <li>Ingrediente 2</li>
+                        <li>Ingrediente 3</li>
+                        <li>Ingrediente 4</li>
+                        <li>Ingrediente 5</li>
                     </ul>
                 </div>
                 <div class="meal_details_measures">
                     <h2 class="meal_details_measures_title">Measures</h2>
                     <ul>
-                        <template v-for="(el, ind) of new Array(21)" :key="ind">
-                            <li v-if="props.meal[`strMeasure${ind + 1}`]">
-                                {{ ind + 1 }}. {{ props.meal[`strMeasure${ind + 1}`] }}
-                            </li>
-                        </template>
+                        <li>Measures 1</li>
+                        <li>Measures 2</li>
+                        <li>Measures 3</li>
+                        <li>Measures 4</li>
+                        <li>Measures 5</li>
+                        
                     </ul>
                 </div>
             </div>
 
             <div class="meal_details_instruccions">
-                <p>{{ props.meal.strInstructions }}</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
             </div>
         </div>
 
     </div>
+
+    <pre>{{ meal }}</pre>
 
 </template>
 
 <script setup>
 import { defineProps } from 'vue';
 
-const props = defineProps({
+defineProps({
     meal: {
         type: Object,
         required: true,
     }
 });
-
-
 </script>
 
 <style lang="scss" scoped>

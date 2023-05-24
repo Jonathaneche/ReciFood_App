@@ -1,14 +1,14 @@
 <template>
     <NavBar />
     <MealDetails />
+    <FormularioLogin />
 </template>
 
-
-
 <script setup>
-
 import NavBar from '@/components/NavBar.vue';
 import MealDetails from '@/components/MealDetails.vue';
+import FormularioLogin from '@/components/FormularioLogin.vue';
+
 
 </script>
 

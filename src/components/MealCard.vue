@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-around" >
                     <a :href="meal.strYoutube" class="btn btn-primary"> Youtube</a>
                     
-                    <router-link :to="{ name: 'meal-details' }" class="btn btn-primary" :meal="meal">Detalles</router-link>
+                    <router-link :to="{ name: 'meal-details' }" class="btn btn-primary">Detalles</router-link>
                 </div>
             </div>
           </div>
