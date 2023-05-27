@@ -1,8 +1,11 @@
 <template>
-  <div class="row p-5 card-container bg-light">
-
-    <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
+  <div class="row p-5 card-container bg-light" v-if="meals">
+      <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
   </div>
+
+    <div class="row p-5 card-container bg-light" v-if="meals_category">
+        <MealCard v-for="meal in meals_category" :key="meal" :meal="meal" />
+    </div>
 
   <router-view />
 </template>
@@ -24,7 +27,10 @@ onMounted(async () => {
       console.error('Error retrieving random meals:', error);
     }
   }
+  console.log("***Meals***", meals.value)
 });
+
+
 </script>
 
 
