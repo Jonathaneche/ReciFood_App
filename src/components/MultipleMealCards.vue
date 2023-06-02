@@ -12,23 +12,24 @@
 
 <script setup>
 import MealCard from '@/components/MealCard.vue'
-import MealService from '@/services/MealService';
+import { useStore } from '../store/mealsStore';
 import {ref, onMounted} from 'vue';
 
 const meals = ref([]);
+const mealsStore = useStore();
 
 
 onMounted(async () => {
   for (let i = 0; i < 8; i++) {
     try {
-      const response = await MealService.getRandomMeals();
+      const response = await mealsStore.getRandomMeals();
       meals.value.push(...response);
     } catch (error) {
       console.error('Error retrieving random meals:', error);
     }
   }
-  console.log("***Meals***", meals.value)
 });
+
 
 
 </script>

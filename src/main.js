@@ -1,29 +1,17 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
+import router from "./router";
+import { useStore } from "../src/store/mealsStore";
 
 //Importando Bootstrap
-import "bootstrap/dist/css/bootstrap.min.css"   //Para importar los estilos css
-import "bootstrap/dist/js/bootstrap.js"         //Para importar los js
+import "bootstrap/dist/css/bootstrap.min.css"; //Para importar los estilos css
+import "bootstrap/dist/js/bootstrap.js"; //Para importar los js
 
-/* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-
-/* add icons to the library */
-library.add(faUserSecret)
+const pinia = createPinia();
 
 createApp(App)
-.component('font-awesome-icon', FontAwesomeIcon)
-.use(router)
-.mount('#app')
-
-
-
-
-
+  .use(pinia)
+  .provide("$store", useStore())
+  .use(router)
+  .mount("#app");

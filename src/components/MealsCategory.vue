@@ -2,49 +2,49 @@
     <div class="contenedor-centrar bg-light">
         <h3 class="meal_categories_title">Meal Categories</h3>
         <div class="category-container">
-            <div class="category-button" @click="searchByCategory(Beef)">
+            <div class="category-button" @click="searchMealsByCategory('Beef')">
                 <div class="circle">
                     <img src="../assets/img/iconos/beef.png" alt="Beef food icon" class="category_icono"/>
                 </div>
                 <span class="category-name">Beef</span>
             </div>
-            <div class="category-button" @click="searchByCategory(Chicken)">
+            <div class="category-button" @click="searchMealsByCategory('Chicken')">
                 <div class="circle">
                     <img src="../assets/img/iconos/chicken.png" alt="Chicken food icon" class="category_icono"/>
                 </div>
                 <span class="category-name">Chicken</span>               
             </div>
-            <div class="category-button" @click="searchByCategory(Pork)">
+            <div class="category-button" @click="searchMealsByCategory('Pork')">
                 <div class="circle">
                     <img src="../assets/img/iconos/pork.png" alt="Pork food icon" class="category_icono"/>
                 </div>
                 <span class="category-name">Pork</span>
             </div>
-            <div class="category-button" @click="searchByCategory(Seafood)">
+            <div class="category-button" @click="searchMealsByCategory('Seafood')">
                 <div class="circle">
                     <img src="../assets/img/iconos/seafood.png" alt="Seafood icon" class="category_icono"/>
                 </div>
                 <span class="category-name" >Seafood</span>
             </div>
-            <div class="category-button" @click="searchByCategory(Breakfast)">
+            <div class="category-button" @click="searchMealsByCategory('Breakfast')">
                 <div class="circle">
                     <img src="../assets/img/iconos/breakfast.png" alt="Breakfast icon" class="category_icono"/>
                 </div>
                 <span class="category-name" >Breakfast</span>
             </div>
-            <div class="category-button" @click="searchByCategory(Pasta)">
+            <div class="category-button" @click="searchMealsByCategory('Pasta')">
                 <div class="circle">
                     <img src="../assets/img/iconos/pasta.png" alt="Pasta icon" class="category_icono"/>
                 </div>
                 <span class="category-name" >Pasta</span>
             </div>
-            <div class="category-button" @click="searchByCategory(Vegetarian)">
+            <div class="category-button" @click="searchMealsByCategory('Vegetarian')">
                 <div class="circle">
                     <img src="../assets/img/iconos/vegetarian.png" alt="Vegetarian icon" class="category_icono"/>
                 </div>
                 <span class="category-name" >Vegetarian</span>
             </div>
-            <div class="category-button " @click="searchByCategory('Dessert')">
+            <div class="category-button " @click="searchMealsByCategory('Dessert')">
                 <div class="circle">
                     <img src="../assets/img/iconos/dessert.png" alt="Dessert icon" class="category_icono"/>
                 </div>
@@ -52,27 +52,38 @@
             </div>
         </div>
     </div>
+
+    <div v-if="mealsByCategory">
+        <hr>
+            <ul>
+                <li v-for="meal in mealsByCategory" :key="meal.idMeal">{{ meal.strMeal }}</li>
+            </ul>
+        <hr>
+    </div>
+
+
 </template>
 
 <script setup>
-import MealService from '@/services/MealService';
+import { useStore } from '../store/mealsStore';
 import { ref } from 'vue';
 
-const meals_category = ref([])
+const store = useStore();
+const mealsByCategory = ref([])
 
 
 
-async function searchByCategory(category){ 
-    try {
-        const response = await MealService.getMealsByCategory(category);
-        meals_category.value.push(...response);
-        
+
+async function searchMealsByCategory(category){ 
+     try {
+        const meals = await store.getMealsByCategory(category);
+         mealsByCategory.value = meals;
+        console.log("******* Aqui: ", meals)
     } catch (error) {
-      console.error('Error retrieving random meals:', error);
+        console.error('Error retrieving meals by category:', error);
     }
-  }
+}
 
-  console.log(meals_category)
 
 </script>
 

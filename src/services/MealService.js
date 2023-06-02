@@ -12,7 +12,7 @@ export default {
         throw error;
       });
   },
-  getMealsByCategory(category) {
+  getMealsByCategory() {
     return axios
       .get(`${BASE_URL}filter.php?c=${category}`)
       .then((response) => response.data.meals)

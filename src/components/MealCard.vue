@@ -19,16 +19,15 @@
 
 </template>
 
-<script>
-export default {
-  props: {
-    meal: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+import {defineProps } from 'vue'
+
+defineProps({
+  meal: {
+    type: Object,
+    required: true,
   },
-  // Resto de la configuración del componente
-}
+})
 </script>
 
 <style lang="scss" scoped>
