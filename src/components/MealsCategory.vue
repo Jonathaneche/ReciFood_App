@@ -53,22 +53,22 @@
         </div>
     </div>
 
-    <div v-if="mealsByCategory">
+    <!-- <div v-if="mealsByCategory">
         <hr>
             <ul>
                 <li v-for="meal in mealsByCategory" :key="meal.idMeal">{{ meal.strMeal }}</li>
             </ul>
         <hr>
-    </div>
+    </div> -->
 
 
 </template>
 
 <script setup>
-import { useStore } from '../store/mealsStore';
+import { useMealsStore } from '../store/mealsStore';
 import { ref } from 'vue';
 
-const store = useStore();
+const store = useMealsStore();
 const mealsByCategory = ref([])
 
 

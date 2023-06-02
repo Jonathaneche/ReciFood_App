@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
-import { useStore } from "../src/store/mealsStore";
+import { useMealsStore } from "../src/store/mealsStore";
 
 //Importando Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css"; //Para importar los estilos css
@@ -12,6 +12,6 @@ const pinia = createPinia();
 
 createApp(App)
   .use(pinia)
-  .provide("$store", useStore())
+  .provide("$store", useMealsStore())
   .use(router)
   .mount("#app");

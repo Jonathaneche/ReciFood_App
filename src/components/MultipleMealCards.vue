@@ -12,25 +12,17 @@
 
 <script setup>
 import MealCard from '@/components/MealCard.vue'
-import { useStore } from '../store/mealsStore';
-import {ref, onMounted} from 'vue';
+import { useMealsStore } from '../store/mealsStore';
+import { ref, onMounted } from 'vue';
 
-const meals = ref([]);
-const mealsStore = useStore();
+const mealsStore = useMealsStore();
+const meals = ref([])
 
-
-onMounted(async () => {
-  for (let i = 0; i < 8; i++) {
-    try {
-      const response = await mealsStore.getRandomMeals();
-      meals.value.push(...response);
-    } catch (error) {
-      console.error('Error retrieving random meals:', error);
-    }
-  }
+onMounted(() => {
+  mealsStore.getRandomMeals()
 });
 
-
+meals.value = mealsStore.meals;
 
 </script>
 
