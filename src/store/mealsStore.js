@@ -47,15 +47,17 @@ export const useMealsStore = defineStore("MealsStore", {
     async getRandomMeals() {
       this.loading = true;
       const uniqueMeals = new Set();
-      while (uniqueMeals.size < 8) {
-        try {
-          const response = await this.getRandomMeal();
-          response.forEach((meal) => uniqueMeals.add(meal));
-        } catch (error) {
-          console.error("Error retrieving random meals:", error);
+      if (this.meals.length == 0) {
+        while (uniqueMeals.size < 8) {
+          try {
+            const response = await this.getRandomMeal();
+            response.forEach((meal) => uniqueMeals.add(meal));
+          } catch (error) {
+            console.error("Error retrieving random meals:", error);
+          }
         }
+        this.meals = Array.from(uniqueMeals).slice(0, 8);
       }
-      this.meals = Array.from(uniqueMeals).slice(0, 8);
       this.loading = false;
     },
     // Almacena varias recetas aleatorias en meals utilizando la accion getRandomMeals, las recetas quizas se puedan repiten

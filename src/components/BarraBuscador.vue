@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useMealsStore } from '../store/mealsStore';
 
 const mealsStore = useMealsStore();
@@ -43,6 +43,13 @@ const searchMeals = () => {
 };
 
 const meals = mealsStore.meals;
+
+// Observa cambios en mealsStore.meals y actualiza meals
+watch(keyword, (newValue) => {
+  if (newValue.match(/[a-zA-Z]/)) {
+    searchMeals();
+  }
+});
 
 </script>
 
