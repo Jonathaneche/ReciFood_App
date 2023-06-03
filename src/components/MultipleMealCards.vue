@@ -1,9 +1,17 @@
 <template>
-  <div class="row p-5 card-container bg-light" v-if="meals">
+  <p v-if="mealsStore.loading">Cargando...</p>
+  <div class="row p-5 card-container bg-light" v-if= "meals && meals.length > 0">
       <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
   </div>
+  <div v-else>
+    <p>No se encontraron resultados. Realiza otra busqueda</p>
+  </div>
 
+<!-- Comentario:
+v-if= "meals && meals.length > 0" (verificamos que existe una variable meals y que su logitud sea mayor a 0, nos mostrara el resultado)
+v-else  (de lo contrario se mostrara el div con el mensaje "No se encontraron resultados")
 
+-->
 
   <router-view />
 </template>

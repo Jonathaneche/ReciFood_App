@@ -8,19 +8,17 @@ export const useMealsStore = defineStore("MealsStore", {
     meal: [],
     meals: [],
     loading: false,
-    searchedMeals: [],
-    mealsByLetter: [],
-    mealsByIngredient: [],
   }),
   actions: {
     getRandomMeal() {
-      return axios
-        .get(`${BASE_URL}random.php`)
-        .then((response) => response.data.meals)
-        .catch((error) => {
-          console.error("Error retrieving random meals:", error);
-          throw error;
-        });
+      try {
+        return axios
+          .get(`${BASE_URL}random.php`)
+          .then((response) => response.data.meals);
+      } catch (error) {
+        console.error("Error retrieving random meals:", error);
+        throw error;
+      }
     },
 
     async getRandomMeals() {
@@ -45,6 +43,16 @@ export const useMealsStore = defineStore("MealsStore", {
         return this.meals;
       } catch (error) {
         console.error("Error retrieving meals by category:", error);
+        throw error;
+      }
+    },
+    async searchMeals(keyword) {
+      try {
+        const response = await axios.get(`${BASE_URL}search.php?s=${keyword}`);
+        this.meals = response.data.meals;
+        return this.meals;
+      } catch (error) {
+        console.error("Error retrieving searched Meals:", error);
         throw error;
       }
     },
