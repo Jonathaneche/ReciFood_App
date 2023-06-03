@@ -3,9 +3,7 @@
       <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
   </div>
 
-    <div class="row p-5 card-container bg-light" v-if="meals_category">
-        <MealCard v-for="meal in meals_category" :key="meal" :meal="meal" />
-    </div>
+
 
   <router-view />
 </template>
@@ -13,16 +11,32 @@
 <script setup>
 import MealCard from '@/components/MealCard.vue'
 import { useMealsStore } from '../store/mealsStore';
-import { ref, onMounted } from 'vue';
+import { onMounted, watch, ref } from 'vue';
 
 const mealsStore = useMealsStore();
-const meals = ref([])
+const meals = ref([]);
+
+meals.value = mealsStore.meals
 
 onMounted(() => {
   mealsStore.getRandomMeals()
 });
 
-meals.value = mealsStore.meals;
+
+// Observa cambios en mealsStore.meals y actualiza meals
+watch(() => mealsStore.meals, (newMeals) => {
+  meals.value = newMeals;
+});
+
+
+
+
+
+// // Define el estado que deseas observar
+// const count = store.count;
+
+// // Usa watch para observar cambios en el estado
+
 
 </script>
 
