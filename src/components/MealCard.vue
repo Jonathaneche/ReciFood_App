@@ -3,10 +3,9 @@
           <div class="card" >
             <img :src="meal.strMealThumb" :alt="meal.strMeal"  class="card-img-top"/>
             <div class="card-body">
-              <h5 class="card-title">{{ meal.strMeal }}</h5>
+              <h5 class="card-title" >{{ meal.strMeal }}</h5>
               <p class="card-text">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
+                {{ meal.strInstructions }}
               </p>
                 <div class="d-flex justify-content-around" >
                     <a :href="meal.strYoutube" class="btn btn-primary"> Youtube</a>
@@ -44,5 +43,21 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+
+.card-title{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+.card-text{
+  font-size: .9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 </style>
