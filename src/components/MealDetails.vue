@@ -1,21 +1,19 @@
 <template>
-    <div class="meal_details_container mb-5">
-        <h1 class="meal_details_title p-3 mt-4">Detalles de la receta</h1>
+    <div class="meal_details_container mb-5" v-if="meal && meal.length > 0">
+        <h1 class="meal_details_title p-3 mt-4">{{ meal[0].strMeal }}</h1>
         
         <div class="meal_details_card">
             <div class="card_details_imagen_info">
-                <img src="../assets/img/chocolate-veggie-cake.jpg" alt="Veggie chocolate cake" class="meal_details_image mb-3 ">
+                <img :src="meal[0].strMealThumb" :alt="meal[0].strMeal" class="meal_details_image mb-3 ">
                 
                 <div class="meal_details_group_info">
                     <div>
-                        <strong >Category:</strong> Postre
+                        <strong >Category:</strong> {{ meal[0].strCategory }}
                     </div>
                     <div>
-                        <strong >Area:</strong> España
+                        <strong >Area:</strong> {{ meal[0].strArea }}
                     </div>
-                    <div>
-                        <strong >Tags:</strong> Chocolate
-                    </div>
+
                 </div>
             </div>
 
@@ -44,27 +42,37 @@
             </div>
 
             <div class="meal_details_instruccions">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa omnis eveniet voluptate nesciunt praesentium! Quis, qui architecto, animi laudantium tempora sunt est fuga adipisci perspiciatis beatae, autem facilis nihil voluptate.</p>
+                <p>{{ meal[0].strInstructions }}</p>
             </div>
         </div>
 
+        
     </div>
-
-    <pre>{{ meal }}</pre>
+    <!-- <pre>{{ meal }}</pre>
+    <pre >{{ meal[0].strMeal }}</pre> -->
+        
+    
 
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { useMealsStore } from '../store/mealsStore';
+import {  ref, watch, onMounted } from 'vue'
 
-defineProps({
-    meal: {
-        type: Object,
-        required: true,
-    }
+const mealsStore = useMealsStore();
+const meal = ref([]);
+
+meal.value = mealsStore.meal
+
+onMounted(() => {
+    mealsStore.getMealDetails()
 });
+
+// Observa cambios en mealsStore.meals y actualiza meals
+watch(() => mealsStore.meal, (newMeal) => {
+    meal.value = newMeal;
+});
+
 </script>
 
 <style lang="scss" scoped>

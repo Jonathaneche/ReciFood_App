@@ -6,10 +6,32 @@ const BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
 export const useMealsStore = defineStore("MealsStore", {
   state: () => ({
     meal: [],
+    mealId: "",
     meals: [],
     loading: false,
   }),
   actions: {
+    //Guarda el id de la comida seleccionada
+    async saveMeal(id) {
+      this.mealId = id;
+      console.log("ID******", this.mealId);
+    },
+    //www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+    //Busca la receta usando el id, y se tienea acceso a los detalles de la receta
+    async getMealDetails() {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}lookup.php?i=${this.mealId}`
+        );
+        this.meal = response.data.meals;
+        console.log("Meal Information******", this.meal);
+        return this.meal;
+      } catch (error) {
+        console.error("Error retrieving meal details:", error);
+        throw error;
+      }
+    },
+
     //Buscar una receta ateatoria
     getRandomMeal() {
       try {

@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-around" >
                     <a :href="meal.strYoutube" class="btn btn-primary"> Youtube</a>
                     
-                    <router-link :to="{ name: 'meal-details' }" class="btn btn-primary">Detalles</router-link>
+                    <router-link :to="{ name: 'meal-details' }" class="btn btn-primary" @click="saveMealDetails(meal.idMeal)">Detalles</router-link>
                 </div>
             </div>
           </div>
@@ -20,6 +20,19 @@
 </template>
 
 <script setup>
+import { useMealsStore } from '../store/mealsStore';
+
+const mealsStore = useMealsStore();
+
+function saveMealDetails(id) {
+  try {
+    mealsStore.saveMeal(id)
+  } catch (error) {
+    console.error('Error retrieving meals by category:', error);
+  }
+}
+
+
 import {defineProps } from 'vue'
 
 defineProps({
