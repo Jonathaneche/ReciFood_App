@@ -10,6 +10,7 @@ export const useMealsStore = defineStore("MealsStore", {
     loading: false,
   }),
   actions: {
+    //Buscar una receta ateatoria
     getRandomMeal() {
       try {
         return axios
@@ -20,8 +21,23 @@ export const useMealsStore = defineStore("MealsStore", {
         throw error;
       }
     },
-
+    // Almacena varias recetas aleatorias en meals utilizando la accion getRandomMeals, las recetas no se repiten
     async getRandomMeals() {
+      this.loading = true;
+      const uniqueMeals = new Set();
+      while (uniqueMeals.size < 8) {
+        try {
+          const response = await this.getRandomMeal();
+          response.forEach((meal) => uniqueMeals.add(meal));
+        } catch (error) {
+          console.error("Error retrieving random meals:", error);
+        }
+      }
+      this.meals = Array.from(uniqueMeals).slice(0, 8);
+      this.loading = false;
+    },
+    // Almacena varias recetas aleatorias en meals utilizando la accion getRandomMeals, las recetas quizas se puedan repiten
+    /*async getRandomMeals() {
       this.loading = true;
       for (let i = 0; i < 8; i++) {
         try {
@@ -34,8 +50,8 @@ export const useMealsStore = defineStore("MealsStore", {
         }
       }
       this.loading = false;
-    },
-
+    },*/
+    //Hacer una busqueda de recetas seleccionando la categoria, y almacenarlas el resultado en meals
     async getMealsByCategory(category) {
       try {
         const response = await axios.get(`${BASE_URL}filter.php?c=${category}`);
@@ -46,6 +62,7 @@ export const useMealsStore = defineStore("MealsStore", {
         throw error;
       }
     },
+    //Hacer una busqueda de recetas usando la barra de busqueda
     async searchMeals(keyword) {
       try {
         const response = await axios.get(`${BASE_URL}search.php?s=${keyword}`);

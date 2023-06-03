@@ -71,17 +71,14 @@ import { ref } from 'vue';
 const store = useMealsStore();
 const mealsByCategory = ref([])
 
-
-
-
 async function searchMealsByCategory(category){ 
      try {
-        const meals = await store.getMealsByCategory(category);
-         mealsByCategory.value = meals;
-        console.log("******* Aqui: ", meals)
-    } catch (error) {
-        console.error('Error retrieving meals by category:', error);
-    }
+            const meals = await store.getMealsByCategory(category);
+            mealsByCategory.value = meals;
+            console.log("******* Aqui: ", meals)
+        } catch (error) {
+            console.error('Error retrieving meals by category:', error);
+        }
 }
 
 
