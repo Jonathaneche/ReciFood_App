@@ -30,12 +30,12 @@
                     <div class="meal_details_measures">
                         <h2 class="meal_details_measures_title">Measures</h2>
                         <ul>
-                        <template v-for="(el, ind) of new Array(21)" :key="ind">
-                            <li v-if="meal[`strMeasure${ind + 1}`]">
-                                {{ ind + 1 }}. {{ meal[`strMeasure${ind + 1}`] }}
-                            </li>
-                        </template>
-                    </ul>
+                            <template v-for="(el, ind) of new Array(21)" :key="ind">
+                                <li v-if="meal[`strMeasure${ind + 1}`] && meal[`strMeasure${ind + 1}`].trim() !== ''">
+                                    {{ ind + 1 }}. {{ meal[`strMeasure${ind + 1}`] }}
+                                </li>
+                            </template>
+                        </ul>
                     </div>
             </div>
             </div>

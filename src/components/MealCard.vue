@@ -1,25 +1,26 @@
 <template>
-        <div class=" pb-4 px-0">
-          <div class="card" >
-            <img :src="meal.strMealThumb" :alt="meal.strMeal"  class="card-img-top"/>
-            <div class="card-body">
-              <h5 class="card-title" >{{ meal.strMeal }}</h5>
-              <p class="card-text">
-                {{ meal.strInstructions }}
-              </p>
-                <div class="d-flex justify-content-around" >
-                    <a :href="meal.strYoutube" class="btn btn-primary"> Youtube</a>
-                    
-                    <router-link :to="{ name: 'meal-details' }" class="btn btn-primary" @click="saveMealDetails(meal.idMeal)">Detalles</router-link>
-                </div>
-            </div>
-          </div>
-        </div>
+  <div class=" pb-4 px-0">
+    <div class="card">
+      <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
+      <div class="card-body">
+        <h5 class="card-title">{{ meal.strMeal }}</h5>
+        <p class="card-text">
+          {{ meal.strInstructions }}
+        </p>
+        <div class="d-flex justify-content-around">
+          <a :href="meal.strYoutube" class="btn btn-primary"> Youtube</a>
 
+          <router-link :to="{ name: 'meal-details' }" class="btn btn-primary"
+            @click="saveMealDetails(meal.idMeal)">Detalles</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { useMealsStore } from '../store/mealsStore';
+import { defineProps } from 'vue'
 
 const mealsStore = useMealsStore();
 
@@ -30,9 +31,6 @@ function saveMealDetails(id) {
     console.error('Error retrieving meals by category:', error);
   }
 }
-
-
-import {defineProps } from 'vue'
 
 defineProps({
   meal: {

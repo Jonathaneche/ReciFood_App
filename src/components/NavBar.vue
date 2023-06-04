@@ -30,8 +30,8 @@
             </ul>
             <ul class="navbar-nav ms-auto nav_login">
             
-                <a href="#" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user-plus pe-1"></i>Sign up</a>
-                <a href="#" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user pe-1"></i>Log in</a>
+                <!-- <a href="#" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user-plus pe-1"></i>Sign up</a> -->
+                <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user pe-1"></i>Log in</router-link>
             
             </ul>
         </div>
