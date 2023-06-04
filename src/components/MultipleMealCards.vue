@@ -1,9 +1,9 @@
 <template>
   <p v-if="mealsStore.loading">Cargando...</p>
-  <!-- Comentario:
-v-if= "meals && meals.length > 0" (verificamos que existe una variable meals y que su logitud sea mayor a 0, nos mostrara el resultado)
-v-else  (de lo contrario se mostrara el div con el mensaje "No se encontraron resultados")
--->
+        <!-- Comentario:
+      v-if= "meals && meals.length > 0" (verificamos que existe una variable meals y que su logitud sea mayor a 0, nos mostrara el resultado)
+      v-else  (de lo contrario se mostrara el div con el mensaje "No se encontraron resultados")
+      -->
   <div class="row p-5 card-container bg-light" v-if= "meals && meals.length > 0">
       <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
   </div>
@@ -41,7 +41,7 @@ watch(() => mealsStore.meals, (newMeals) => {
 .card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.6rem;
 }
 
 

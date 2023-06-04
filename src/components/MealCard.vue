@@ -1,5 +1,5 @@
 <template>
-        <div class=" pb-4">
+        <div class=" pb-4 px-0">
           <div class="card" >
             <img :src="meal.strMealThumb" :alt="meal.strMeal"  class="card-img-top"/>
             <div class="card-body">

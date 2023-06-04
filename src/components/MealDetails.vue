@@ -1,57 +1,56 @@
 <template>
-    <div class="meal_details_container mb-5" v-if="meal && meal.length > 0">
-        <h1 class="meal_details_title p-3 mt-4">{{ meal[0].strMeal }}</h1>
-        
-        <div class="meal_details_card">
-            <div class="card_details_imagen_info">
-                <img :src="meal[0].strMealThumb" :alt="meal[0].strMeal" class="meal_details_image mb-3 ">
+
+    <div class="meal_details_container mb-5" v-if= "mealDetails && mealDetails.length > 0">
+        <div  v-for="meal in mealDetails" :key="meal.idMeal">
+            <h1 class="meal_details_title p-3 mt-4">{{ meal.strMeal }}</h1>
+            <div class="meal_details_card">
+                <div class="card_details_imagen_info">
+                    <img :src="meal.strMealThumb" :alt="meal.strMeal" class="meal_details_image mb-3 ">
                 
-                <div class="meal_details_group_info">
-                    <div>
-                        <strong >Category:</strong> {{ meal[0].strCategory }}
+                    <div class="meal_details_group_info">
+                        <div>
+                            <strong >Category:</strong> {{ meal.strCategory }}
+                        </div>
+                        <div>
+                            <strong >Area:</strong> {{ meal.strArea }}
+                        </div>
                     </div>
-                    <div>
-                        <strong >Area:</strong> {{ meal[0].strArea }}
+                </div>
+                <div class="meal_details_ingredientes_measures">
+                    <div class="meal_details_ingredients">
+                        <h2 class="meal_details_ingredients_title">Ingredients</h2>
+                        <ul>
+                        <template v-for="(el, ind) of new Array(21)" :key="ind">
+                            <li v-if="meal[`strIngredient${ind + 1}`]">
+                                {{ ind + 1 }}. {{ meal[`strIngredient${ind + 1}`] }}
+                            </li>
+                        </template>
+                    </ul>
                     </div>
-
-                </div>
-            </div>
-
-            <div class="meal_details_ingredientes_measures">
-                <div class="meal_details_ingredients">
-                    <h2 class="meal_details_ingredients_title">Ingredients</h2>
-                    <ul>
-                        <li>Ingrediente 1</li>
-                        <li>Ingrediente 2</li>
-                        <li>Ingrediente 3</li>
-                        <li>Ingrediente 4</li>
-                        <li>Ingrediente 5</li>
+                    <div class="meal_details_measures">
+                        <h2 class="meal_details_measures_title">Measures</h2>
+                        <ul>
+                        <template v-for="(el, ind) of new Array(21)" :key="ind">
+                            <li v-if="meal[`strMeasure${ind + 1}`]">
+                                {{ ind + 1 }}. {{ meal[`strMeasure${ind + 1}`] }}
+                            </li>
+                        </template>
                     </ul>
-                </div>
-                <div class="meal_details_measures">
-                    <h2 class="meal_details_measures_title">Measures</h2>
-                    <ul>
-                        <li>Measures 1</li>
-                        <li>Measures 2</li>
-                        <li>Measures 3</li>
-                        <li>Measures 4</li>
-                        <li>Measures 5</li>
-                        
-                    </ul>
-                </div>
+                    </div>
+            </div>
             </div>
 
-            <div class="meal_details_instruccions">
-                <p>{{ meal[0].strInstructions }}</p>
+            <div class="meal_details_instruccions py-3">
+                <h3 >Instructions:</h3>
+                <p>{{ meal.strInstructions }}</p>
             </div>
+            <br><hr>
+            <pre>{{ meal }}</pre>
         </div>
 
         
     </div>
-    <!-- <pre>{{ meal }}</pre>
-    <pre >{{ meal[0].strMeal }}</pre> -->
-        
-    
+
 
 </template>
 
@@ -60,17 +59,17 @@ import { useMealsStore } from '../store/mealsStore';
 import {  ref, watch, onMounted } from 'vue'
 
 const mealsStore = useMealsStore();
-const meal = ref([]);
+const mealDetails = ref([]);
 
-meal.value = mealsStore.meal
+mealDetails.value = mealsStore.meal
 
 onMounted(() => {
     mealsStore.getMealDetails()
 });
 
-// Observa cambios en mealsStore.meals y actualiza meals
+// Observa cambios en mealsStore.meal y actualiza mealDetails.value
 watch(() => mealsStore.meal, (newMeal) => {
-    meal.value = newMeal;
+    mealDetails.value = newMeal;
 });
 
 </script>
@@ -132,7 +131,7 @@ watch(() => mealsStore.meal, (newMeal) => {
 
 
 /* Estilos para dispositivos móviles */
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .meal_details_card{
         grid-template-columns: 1fr;
     }

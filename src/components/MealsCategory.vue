@@ -75,7 +75,7 @@ async function searchMealsByCategory(category){
      try {
             const meals = await store.getMealsByCategory(category);
             mealsByCategory.value = meals;
-            console.log("******* Aqui: ", meals)
+            console.log(`***Comidas detro de categoria ${category}:`, meals)
         } catch (error) {
             console.error('Error retrieving meals by category:', error);
         }
