@@ -32,7 +32,6 @@ const routes = [
 
     component: () => import("../views/PageNotFoundView.vue"),
   },
-  ,
   {
     path: "/dashboard",
     name: "dashboard",
