@@ -17,6 +17,9 @@
             <li class="nav-item">
                 <a class="nav-link mx-2" href="#">About</a>
             </li>
+            <li class="nav-item">
+                <router-link :to="{ name: 'dashboard' }" class="nav-link mx-2" v-if="isLoggedIn" >Dashboard</router-link>
+            </li>
             <!-- <li class="nav-item dropdown">
                 <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Company
@@ -29,9 +32,9 @@
             </li> -->
             </ul>
             <ul class="navbar-nav ms-auto nav_login">
-            
-                <!-- <a href="#" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user-plus pe-1"></i>Sign up</a> -->
-                <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 "><i class="fa-solid fa-user pe-1"></i>Log in</router-link>
+
+                <a class="nav-item nav-link mx-2 " @click="handleSignOut" v-if="isLoggedIn" ><i class="fa-solid fa-user-plus pe-1"></i>Log Out</a>
+                <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 " v-if="isLoggedIn != true"><i class="fa-solid fa-user pe-1" ></i>Log in</router-link>
             
             </ul>
         </div>
@@ -41,6 +44,32 @@
 </template>
 
 <script setup>
+
+import { onMounted, ref } from 'vue';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import router from '../router'
+const isLoggedIn = ref(false)
+
+let auth;
+
+onMounted(() => {
+    auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            isLoggedIn.value = true;
+        } else {
+            isLoggedIn.value = false;
+        }
+    });
+})
+
+
+const handleSignOut = () => {
+    signOut(auth).then(() => {
+        router.push("/")
+    })
+}
+
 
 </script>
 

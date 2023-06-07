@@ -17,7 +17,7 @@
         <button type="button" class="google-btn">Join with <span>google</span></button>
       </div>
       <div class="sub-cont">
-        <div class="img">
+        <div class="img"> <!--Imagen con opcion de cambiar a login o signup-->
           <div class="img__text m--up">
             <h2>New here?</h2>
             <p>Sign up and discover great amount of new opportunities!</p>
@@ -39,13 +39,14 @@
           </label>
           <label>
             <span>Email</span>
-            <input type="email" />
+            <input type="email" v-model="email"/>
           </label>
           <label>
             <span>Password</span>
-            <input type="password" />
+            <input type="password" v-model="password"/>
           </label>
-          <button type="button" class="submit">Sign Up</button>
+          <button type="button" class="submit" @click="register">Sign Up</button>
+          
           <button type="button" class="fb-btn">Join with <span>facebook</span></button>
           <button type="button" class="google-btn">Join with <span>google</span></button>
         </div>
@@ -55,12 +56,33 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import setupUserForms from '../js/FormularioLoginSignup';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { useRouter } from 'vue-router'
+
 
 onMounted(() => {
   setupUserForms();
 });
+
+const email = ref("")
+const password = ref("")
+const router = useRouter();
+
+const register = () => {
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log("Successfully registered!", data)
+      router.push('/dashboard')
+    })
+    .catch((error) => {
+      console.log(error.code);
+      alert(error.message)
+    })
+}
+
+
 
 
 </script>
