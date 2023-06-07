@@ -14,6 +14,7 @@
         <p class="forgot-pass">Forgot password?</p>
         <button type="button" class="submit">Sign In</button>
         <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
+        <button type="button" class="google-btn">Join with <span>google</span></button>
       </div>
       <div class="sub-cont">
         <div class="img">
@@ -250,6 +251,11 @@ button {
     font-size: 15px;
     cursor: pointer;
 
+    @media (max-width: 768px) {
+    width: 200px;
+    margin: 20px auto;
+  }
+
     &:after {
       content: '';
       z-index: 2;
@@ -382,6 +388,23 @@ input {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .form.sign-up {
+    display: none;
+  }
+
+  .cont.s--signup .form.sign-in {
+    display: none;
+  }
+
+  .cont.s--signup .form.sign-up {
+    display: block;
+  }
+}
+
+
+
 
 //Dejando este estilo fondo_magico para ver donde los puedo implentar, en este componente no queda bien
 .fondo_magicoo{

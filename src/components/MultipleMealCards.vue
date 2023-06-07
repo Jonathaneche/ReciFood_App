@@ -48,10 +48,17 @@ watch(() => mealsStore.meals, (newMeals) => {
 
 
 /* Estilos para dispositivos tablets */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .card-container {
     grid-template-columns: repeat(3, 1fr);
     gap: .5rem;
+  }
+}
+
+/* Estilos para dispositivos tablets pequeñas */
+@media (max-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

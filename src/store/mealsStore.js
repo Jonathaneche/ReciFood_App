@@ -16,8 +16,10 @@ export const useMealsStore = defineStore("MealsStore", {
       this.mealId = id;
       console.log("ID******", this.mealId);
     },
+
     //www.themealdb.com/api/json/v1/1/lookup.php?i=52772
     //Busca la receta usando el id, y se tienea acceso a los detalles de la receta
+
     async getMealDetails() {
       try {
         const response = await axios.get(
@@ -75,6 +77,7 @@ export const useMealsStore = defineStore("MealsStore", {
       }
       this.loading = false;
     },*/
+
     //Hacer una busqueda de recetas seleccionando la categoria, y almacenarlas el resultado en meals
     async getMealsByCategory(category) {
       try {
@@ -86,6 +89,7 @@ export const useMealsStore = defineStore("MealsStore", {
         throw error;
       }
     },
+
     //Hacer una busqueda de recetas usando la barra de busqueda
     async searchMeals(keyword) {
       try {

@@ -1,7 +1,13 @@
 <template>
-  <div class=" pb-4 px-0">
+  <div class=" pb-4 px-0 ">
     <div class="card">
-      <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
+      <div class="imagen-contenedor">
+        <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
+        <div class="text-end">
+          <i class="fas fa-heart"></i>
+        </div>
+      </div>
+      
       <div class="card-body">
         <h5 class="card-title">{{ meal.strMeal }}</h5>
         <p class="card-text">
@@ -15,6 +21,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -56,6 +63,18 @@ defineProps({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.imagen-contenedor{
+  position: relative;
+}
+.text-end {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  color: white; /* Cambia el color del corazón según tus preferencias */
+  font-size: 2rem; /* Ajusta el tamaño del corazón según tus preferencias */
 }
 
 </style>
