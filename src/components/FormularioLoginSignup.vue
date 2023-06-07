@@ -5,14 +5,15 @@
         <h2>Welcome back,</h2>
         <label>
           <span>Email</span>
-          <input type="email" />
+          <input type="email" v-model="emailSignin"/>
         </label>
         <label>
           <span>Password</span>
-          <input type="password" />
+          <input type="password" v-model="passwordSignin"/>
         </label>
         <p class="forgot-pass">Forgot password?</p>
-        <button type="button" class="submit">Sign In</button>
+        <p v-if="errMsg">{{ errMsg }}</p>
+        <button type="button" class="submit" @click="signin">Sign In</button>
         <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
         <button type="button" class="google-btn">Join with <span>google</span></button>
       </div>
@@ -46,7 +47,7 @@
             <input type="password" v-model="password"/>
           </label>
           <button type="button" class="submit" @click="register">Sign Up</button>
-          
+
           <button type="button" class="fb-btn">Join with <span>facebook</span></button>
           <button type="button" class="google-btn">Join with <span>google</span></button>
         </div>
@@ -58,7 +59,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import setupUserForms from '../js/FormularioLoginSignup';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth" //Para el registro
+import { signInWithEmailAndPassword} from "firebase/auth"                //Para iniciar sesion
 import { useRouter } from 'vue-router'
 
 
@@ -68,6 +70,9 @@ onMounted(() => {
 
 const email = ref("")
 const password = ref("")
+const emailSignin = ref("")
+const passwordSignin = ref("")
+const errMsg = ref()
 const router = useRouter();
 
 const register = () => {
@@ -79,6 +84,31 @@ const register = () => {
     .catch((error) => {
       console.log(error.code);
       alert(error.message)
+    })
+}
+
+const signin = () => {
+  signInWithEmailAndPassword(getAuth(), emailSignin.value, passwordSignin.value)
+    .then((data) => {
+      console.log("Successfully signed!", data)
+      router.push('/dashboard')
+    })
+    .catch((error) => {
+      console.log(error.code);
+      switch (error.code) {
+        case "auth/invalid-email":
+          errMsg.value = "Invalid email";
+          break;
+        case "auth/user-not-found":
+          errMsg.value = "No account with that email was found";
+          break;
+        case "auth/wrong-password":
+          errMsg.value = "Incorrect password";
+          break;
+        default:
+          errMsg.value = "Email or password was incorrect";
+          break;
+      }
     })
 }
 
