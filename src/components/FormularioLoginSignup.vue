@@ -1,6 +1,6 @@
 <template>
-    <div class="fondo_magico">
-    <div class="cont p-5">
+    <div class="fondo_coloress">
+    <div class="cont p-5" >
       <div class="form sign-in">
         <h2>Welcome back,</h2>
         <label>
@@ -458,8 +458,8 @@ input {
 
 
 
-//Dejando este estilo fondo_magico para ver donde los puedo implentar, en este componente no queda bien
-.fondo_magicoo{
+//Dejando este estilo fondo_colores para ver donde los puedo implentar, en este componente no queda bien
+.fondo_colores{
   background-image: url('../assets/img/svg/background.svg');
     background-repeat: no-repeat;
     background-size: cover;

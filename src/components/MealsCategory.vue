@@ -66,21 +66,36 @@
 
 <script setup>
 import { useMealsStore } from '../store/mealsStore';
+import { hasInternetConnection } from '../js/internet';
 import { ref } from 'vue';
 
 const store = useMealsStore();
 const mealsByCategory = ref([])
 
-async function searchMealsByCategory(category){ 
-     try {
+// async function searchMealsByCategory(category){ 
+//      try {
+//             const meals = await store.getMealsByCategory(category);
+//             mealsByCategory.value = meals;
+//             console.log(`***Comidas detro de categoria ${category}:`, meals)
+//         } catch (error) {
+//             console.error('Error retrieving meals by category:', error);
+//         }
+// }
+
+
+async function searchMealsByCategory(category){
+    if (hasInternetConnection()) {
+        try {
             const meals = await store.getMealsByCategory(category);
             mealsByCategory.value = meals;
             console.log(`***Comidas detro de categoria ${category}:`, meals)
         } catch (error) {
             console.error('Error retrieving meals by category:', error);
         }
+    } else {
+         alert("No hay conexión a Internet")
+    }
 }
-
 
 </script>
 
