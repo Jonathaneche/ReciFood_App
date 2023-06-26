@@ -3,7 +3,7 @@
     <div class="card">
       <div class="imagen-contenedor">
         <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
-        <div class="text-end">
+        <div class=" circle">
           <i class="fas fa-heart"></i>
         </div>
       </div>
@@ -71,14 +71,30 @@ defineProps({
 .imagen-contenedor{
   position: relative;
 }
-.text-end {
+.circle {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 10px;
+  padding: 1rem;
   color: white; /* Cambia el color del corazón según tus preferencias */
-  font-size: 2rem; /* Ajusta el tamaño del corazón según tus preferencias */
+  font-size: 1rem; /* Ajusta el tamaño del corazón según tus preferencias */
+  background-color: red;
+  border-radius: 50%;
 }
+
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgb(201, 195, 195);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  margin: .6rem;
+}
+
 
 .youtube{
     font-size: 2rem;
@@ -148,5 +164,9 @@ defineProps({
  background-color: #ffd035;
  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
+
+/* Estilo para el icono de favoritos */
+
+
 
 </style>

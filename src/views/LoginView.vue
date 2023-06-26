@@ -1,13 +1,11 @@
 <template>
       <NavBar />
       <FormularioLoginSignup/>
-      <FormularioLogin />
       
 </template>
 
 <script setup>
 import NavBar from '@/components/NavBar.vue'
-import FormularioLogin from '@/components/FormularioLogin.vue';
 import FormularioLoginSignup from '@/components/FormularioLoginSignup.vue';
 </script>
 

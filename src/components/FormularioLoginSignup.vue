@@ -1,73 +1,155 @@
 <template>
-    <div class="fondo_coloress">
-    <div class="cont p-5" >
-      <div class="form sign-in">
-        <h2>Welcome back,</h2>
-        <label>
-          <span>Email</span>
-          <input type="email" v-model="emailSignin"/>
-        </label>
-        <label>
-          <span>Password</span>
-          <input type="password" v-model="passwordSignin"/>
-        </label>
-        <p class="forgot-pass">Forgot password?</p>
-        <p v-if="errMsg">{{ errMsg }}</p>
-        <button type="button" class="submit" @click="signin">Sign In</button>
-        <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
-        <button type="button" class="google-btn">Join with <span>google</span></button>
-      </div>
-      <div class="sub-cont">
-        <div class="img"> <!--Imagen con opcion de cambiar a login o signup-->
-          <div class="img__text m--up">
-            <h2>New here?</h2>
-            <p>Sign up and discover great amount of new opportunities!</p>
-          </div>
-          <div class="img__text m--in">
-            <h2>One of us?</h2>
-            <p>If you already has an account, just sign in. We've missed you!</p>
-          </div>
-          <div class="img__btn">
-            <span class="m--up">Sign Up</span>
-            <span class="m--in">Sign In</span>
-          </div>
-        </div>
-        <div class="form sign-up">
-          <h2>Time to feel like home,</h2>
-          <label>
-            <span>Name</span>
-            <input type="text" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" v-model="email"/>
-          </label>
-          <label>
-            <span>Password</span>
-            <input type="password" v-model="password"/>
-          </label>
-          <button type="button" class="submit" @click="register">Sign Up</button>
+      <main>
+        <div class="box">
+          <div class="inner-box">
+            <div class="forms-wrap">
+              <form action="index.html" autocomplete="off" class="sign-in-form">
+                <!-- <div class="logo">
+                  <img src="../assets/img/logo.png" alt="easyclass" />
+                  <h4>ReciFood</h4>
+                </div> -->
 
-          <button type="button" class="fb-btn">Join with <span>facebook</span></button>
-          <button type="button" class="google-btn">Join with <span>google</span></button>
+                <div class="heading">
+                  <h2>Welcome Back</h2>
+                  <h6>Not registred yet?</h6>
+                  <a href="#" class="toggle">Sign up</a>
+                </div>
+
+                <div class="actual-form">
+                  <div class="input-wrap">
+                    <input
+                      type="email"
+                      class="input-field"
+                      autocomplete="off"
+                      required
+                      v-model="emailSignin"
+                    />
+                    <label>Email</label>
+                  </div>
+
+                  <div class="input-wrap">
+                    <input
+                      type="password"
+                      minlength="8"
+                      class="input-field"
+                      autocomplete="off"
+                      required
+                      v-model="passwordSignin"
+                    />
+                    <label>Password</label>
+                  </div>
+
+                  <input type="submit" value="Sign In" class="sign-btn" @click.prevent="signin"/>
+
+                  <p class="text">
+                    Forgotten your password or you login datails?
+                    <a href="#">Get help</a> signing in
+                  </p>
+                  <p v-if="errMsg">{{ errMsg }}</p>
+                </div>
+              </form>
+
+              <form action="index.html" autocomplete="off" class="sign-up-form">
+                <!-- <div class="logo">
+                  <img src="../assets/img/logo.png" alt="easyclass" />
+                  <h4>Recifood</h4>
+                </div> -->
+
+                <div class="heading">
+                  <h2>Get Started</h2>
+                  <h6>Already have an account?</h6>
+                  <a href="#" class="toggle">Sign in</a>
+                </div>
+
+                <div class="actual-form">
+                  <div class="input-wrap">
+                    <input
+                      type="text"
+                      minlength="4"
+                      class="input-field"
+                      autocomplete="off"
+                      required
+                      v-model="name"
+                    />
+                    <label>Name</label>
+                  </div>
+
+                  <div class="input-wrap">
+                    <input
+                      type="email"
+                      class="input-field"
+                      autocomplete="off"
+                      required
+                      v-model="email"
+                    />
+                    <label>Email</label>
+                  </div>
+
+                  <div class="input-wrap">
+                    <input
+                      type="password"
+                      minlength="4"
+                      class="input-field"
+                      autocomplete="off"
+                      required
+                      v-model="password"
+                    />
+                    <label>Password</label>
+                  </div>
+
+                  <input type="submit" value="Sign Up" class="sign-btn" @click.prevent="register"/>
+
+                  <p class="text">
+                    By signing up, I agree to the
+                    <a href="#">Terms of Services</a> and
+                    <a href="#">Privacy Policy</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <div class="carousel">
+              <div class="images-wrapper">
+                <img src="../assets/img/mousse_arandanos.jpg" class="image img-1 show" alt="" />
+                <img src="../assets/img/tarta_frutos_rojos.jpg" class="image img-2" alt="" />
+                <img src="../assets/img/papas.jpg" class="image img-3" alt="" />
+              </div>
+
+              <div class="text-slider">
+                <div class="text-wrap">
+                  <div class="text-group">
+                    <h2>Find delicious meal recipes</h2>
+                    <h2>Shared with your friends</h2>
+                    <h2>Learn from different cultures</h2>
+                  </div>
+                </div>
+
+                <div class="bullets">
+                  <span class="active" data-value="1"></span>
+                  <span data-value="2"></span>
+                  <span data-value="3"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </div>
+      </main>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref} from 'vue';
 import setupUserForms from '../js/FormularioLoginSignup';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth" //Para el registro
 import { signInWithEmailAndPassword} from "firebase/auth"                //Para iniciar sesion
 import { useRouter } from 'vue-router'
+import axios from 'axios';
 
 
 onMounted(() => {
   setupUserForms();
 });
 
+const name = ref("")
 const email = ref("")
 const password = ref("")
 const emailSignin = ref("")
@@ -79,6 +161,7 @@ const register = () => {
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("Successfully registered!", data)
+      registerUserDB()
       router.push('/dashboard')
     })
     .catch((error) => {
@@ -112,357 +195,429 @@ const signin = () => {
     })
 }
 
+  function registerUserDB() {
+  // Obtener los valores del formulario
+  const nombre = name.value;
+  const correo = email.value;
+  const user_id = getAuth().currentUser.uid;
 
+  // Crear el objeto de datos a enviar al servidor
+  const userData = {
+    nombre,
+    correo,
+    user_id
+  };
+
+  // Realizar la solicitud POST al servidor
+  axios.post('http://127.0.0.1:5000/add_user', userData)
+    .then(response => {
+      // Manejar la respuesta del servidor
+      console.log("Si todo salio bien el usuario fue agregado")
+      console.log(response.data);
+    })
+    .catch(error => {
+      // Manejar el error en caso de que ocurra
+      console.error(error);
+    });
+}
 
 
 </script>
 
 <style lang="scss" scoped>
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
   padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  background: #ededed;
+body,
+input {
+  font-family: "Poppins", sans-serif;
 }
 
-input, button {
+main {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ffe6df;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+  position: absolute;
+  width: calc(100% - 4.1rem);
+  height: calc(100% - 4.1rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+  position: absolute;
+  height: 100%;
+  width: 45%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  transition: 0.8s ease-in-out;
+}
+
+form {
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 27px;
+  margin-right: 0.3rem;
+}
+
+.logo h4 {
+  font-size: 1.1rem;
+  margin-top: -9px;
+  letter-spacing: -0.5px;
+  color: #151111;
+}
+
+.heading h2 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #151111;
+}
+
+.heading h6 {
+  color: #bababa;
+  font-weight: 400;
+  font-size: 0.75rem;
+  display: inline;
+}
+
+.toggle {
+  color: #151111;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.toggle:hover {
+  color: #8371fd;
+}
+
+.input-wrap {
+  position: relative;
+  height: 37px;
+  margin-bottom: 2rem;
+}
+
+.input-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: none;
   border: none;
   outline: none;
-  background: none;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-}
-
-$contW: 900px;
-$imgW: 260px;
-$formW: $contW - $imgW;
-$switchAT: 1.2s;
-
-$inputW: 260px;
-$btnH: 36px;
-
-$diffRatio: ($contW - $imgW) / $contW;
-
-@mixin signUpActive {
-  .cont.s--signup & {
-    @content;
-  }
-}
-
-.cont {
-  overflow: hidden;
-  position: relative;
-  width: $contW;
-  height: 550px;
-  margin: 0 auto 100px;
-  background: #fff;
-}
-
-.form {
-  position: relative;
-  width: $formW;
-  height: 100%;
-  transition: transform $switchAT ease-in-out;
-  padding: 35px 30px 0;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}
-
-.sub-cont {
-  overflow: hidden;
-  position: absolute;
-  left: $formW;
-  top: 0;
-  width: $contW;
-  height: 100%;
-  padding-left: $imgW;
-  background: #fff;
-  transition: transform $switchAT ease-in-out;
-
-  @include signUpActive {
-    transform: translate3d($formW * -1,0,0);
-  }
-
-  @media (max-width: 768px) {
-    position: relative;
-    width: 100%;
-    padding-left: 0;
-    transform: none;
-
-    @include signUpActive {
-      transform: none;
-    }
-  }
-}
-
-button {
-  display: block;
-  margin: 0 auto;
-  width: $inputW;
-  height: $btnH;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}
-
-.img {
-  overflow: hidden;
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: $imgW;
-  height: 100%;
-  padding-top: 360px;
-
-  &:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: $contW;
-    height: 100%;
-    background-image: url('../assets/img/mousse_arandanos.jpg');
-    background-size: cover;
-    transition: transform $switchAT ease-in-out;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-  }
-
-  @include signUpActive {
-    &:before {
-      transform: translate3d($formW,0,0);
-    }
-  }
-
-  &__text {
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    top: 50px;
-    width: 100%;
-    padding: 0 20px;
-    text-align: center;
-    color: #fff;
-    transition: transform $switchAT ease-in-out;
-
-    h2 {
-      margin-bottom: 10px;
-      font-weight: normal;
-    }
-
-    p {
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    &.m--up {
-
-      @include signUpActive {
-        transform: translateX($imgW*2);
-      }
-    }
-
-    &.m--in {
-      transform: translateX($imgW * -2);
-
-      @include signUpActive {
-        transform: translateX(0);
-      }
-    }
-  }
-
-  &__btn {
-    overflow: hidden;
-    z-index: 2;
-    position: relative;
-    width: 100px;
-    height: $btnH;
-    margin: 0 auto;
-    background: transparent;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 15px;
-    cursor: pointer;
-
-    @media (max-width: 768px) {
-    width: 200px;
-    margin: 20px auto;
-  }
-
-    &:after {
-      content: '';
-      z-index: 2;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid #fff;
-      border-radius: 30px;
-    }
-
-    span {
-      position: absolute;
-      left: 0;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      transition: transform $switchAT;
-
-      &.m--in {
-        transform: translateY($btnH*-2);
-
-        @include signUpActive {
-          transform: translateY(0);
-        }
-      }
-
-      &.m--up {
-        @include signUpActive {
-          transform: translateY($btnH*2);
-        }
-      }
-    }
-  }
-}
-
-h2 {
-  width: 100%;
-  font-size: 26px;
-  text-align: center;
+  border-bottom: 1px solid #bbb;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #151111;
+  transition: 0.4s;
 }
 
 label {
-  display: block;
-  width: $inputW;
-  margin: 25px auto 0;
-  text-align: center;
-
-  span {
-    font-size: 12px;
-    color: #cfcfcf;
-    text-transform: uppercase;
-  }
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: 0.4s;
 }
 
-input {
-  display: block;
+.input-field.active {
+  border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+  font-size: 0.75rem;
+  top: -2px;
+}
+
+.sign-btn {
+  display: inline-block;
   width: 100%;
-  margin-top: 5px;
-  padding-bottom: 5px;
-  font-size: 16px;
-  border-bottom: 1px solid rgba(0,0,0,0.4);
+  height: 43px;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.sign-btn:hover {
+  background-color: #8371fd;
+}
+
+.text {
+  color: #bbb;
+  font-size: 0.7rem;
+}
+
+.text a {
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.text a:hover {
+  color: #8371fd;
+}
+
+main.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+  left: 55%;
+}
+
+main.sign-up-mode .carousel {
+  left: 0%;
+}
+
+.carousel {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: 45%;
+  top: 0;
+  background-color: #ffe0d2;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  transition: 0.8s ease-in-out;
+}
+
+.images-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image {
+  width: 100%;
+  height: 400px;
+  max-height: 500px;
+  object-fit: cover;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.img-1 {
+  transform: translate(0, -50px);
+}
+
+.img-2 {
+  transform: scale(0.4, 0.5);
+}
+
+.img-3 {
+  transform: scale(0.3) rotate(-20deg);
+}
+
+.image.show {
+  opacity: 1;
+  transform: none;
+}
+
+.text-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text-wrap {
+  max-height: 2.2rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  transform: translateY(0);
+  transition: 0.5s;
 }
 
-.forgot-pass {
-  margin-top: 15px;
-  text-align: center;
-  font-size: 12px;
-  color: #cfcfcf;
+.text-group h2 {
+  line-height: 2.2rem;
+  font-weight: 600;
+  font-size: 1.6rem;
 }
 
-.submit {
-  margin-top: 2.2rem;
-  margin-bottom: 0.7;
-  background: #d4af7a;
-  text-transform: uppercase;
+.bullets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fb-btn, .google-btn {
-  margin-top: 0.3rem;
-  border: 2px solid #d3dae9;
-  color: darken(#d3dae9, 20%);
-
-  span {
-    font-weight: bold;
-    color: darken(#768cb6, 20%);
-  }
+.bullets span {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #aaa;
+  margin: 0 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.sign-in {
-  transition-timing-function: ease-out;
-
-  @include signUpActive {
-    transition-timing-function: ease-in-out;
-    transition-duration: $switchAT;
-    transform: translate3d($formW,0,0);
-  }
+.bullets span.active {
+  width: 1.1rem;
+  background-color: #151111;
+  border-radius: 1rem;
 }
 
-.sign-up {
-  transform: translate3d($contW * -1,0,0);
-
-  @include signUpActive {
-    transform: translate3d(0,0,0);
-  }
-}
-
-@media (max-width: 768px) {
-  $contW: 100%;
-  $imgW: 100%;
-  $formW: 100%;
-  $inputW: 100%;
-
-  .cont {
-    width: $contW;
+@media (max-width: 850px) {
+  .box {
     height: auto;
-    margin-bottom: 50px;
+    max-width: 550px;
+    overflow: hidden;
   }
 
-  .img {
-    width: $imgW;
-    padding-top: 180px;
-    &:before {
-      width: $contW;
-    }
+  .inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 2rem;
   }
-}
 
-@media (max-width: 768px) {
-  .form.sign-up {
+  .forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+  }
+
+  form {
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+  }
+
+  .heading {
+    margin: 2rem 0;
+  }
+
+  form.sign-up-form {
+    transform: translateX(100%);
+  }
+
+  main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+  }
+
+  main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+  }
+  .carousel {
+    position: revert;
+    height: auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+  }
+  .images-wrapper {
     display: none;
   }
 
-  .cont.s--signup .form.sign-in {
-    display: none;
-  }
-
-  .cont.s--signup .form.sign-up {
-    display: block;
+  .text-slider {
+    width: 100%;
   }
 }
 
+@media (max-width: 530px) {
+  main {
+    padding: 1rem;
+  }
 
+  .box {
+    border-radius: 2rem;
+  }
 
+  .inner-box {
+    padding: 1rem;
+  }
 
-//Dejando este estilo fondo_colores para ver donde los puedo implentar, en este componente no queda bien
-.fondo_colores{
-  background-image: url('../assets/img/svg/background.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
+  .carousel {
+    padding: 1.5rem 1rem;
+    border-radius: 1.6rem;
+  }
+
+  .text-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .text-group h2 {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 1rem 2rem 1.5rem;
+  }
 }
 
 </style>
