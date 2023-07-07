@@ -1,8 +1,16 @@
 <template>
   <router-view/>
+  <BotonSubir/>
 </template>
 
-<script setup></script>
+
+<script setup>
+import BotonSubir from "./components/BotonSubir"
+</script>
+
+
+
+
 
 <style lang="scss" scoped>
 #app {
