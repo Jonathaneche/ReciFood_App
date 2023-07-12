@@ -13,10 +13,11 @@
           </div>
         </div>
       </div>
-      <div class="row p-5 card-container bg-light" v-if="meals && meals.length > 0">
+      <!-- <div class="row p-5 card-container bg-light" v-if="meals && meals.length == []">
+        <p>recetas desde el buscador</p>
         <MealCard v-for="meal in meals" :key="meal.idMeal" :meal="meal" />
-      </div>
-      <div v-if="showEmptyKeywordMessage">
+      </div> -->
+      <div class="row p-5 card-container bg-light" v-if="showEmptyKeywordMessage">
         <p>Por favor, escribe algo para realizar la búsqueda.</p>
       </div>
     </div>
@@ -42,7 +43,8 @@ const searchMeals = () => {
   mealsStore.searchMeals(keyword.value);
 };
 
-const meals = mealsStore.meals;
+// const meals =
+//   mealsStore.mealsSearched;
 
 // Observa cambios en mealsStore.meals y actualiza meals
 watch(keyword, (newValue) => {

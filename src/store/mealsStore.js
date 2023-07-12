@@ -95,6 +95,10 @@ export const useMealsStore = defineStore("MealsStore", {
       try {
         const response = await axios.get(`${BASE_URL}search.php?s=${keyword}`);
         this.meals = response.data.meals;
+        console.log(
+          "***Desde la funcion searchMeals en MealsStore***",
+          this.meals
+        );
         return this.meals;
       } catch (error) {
         console.error("Error retrieving searched Meals:", error);
