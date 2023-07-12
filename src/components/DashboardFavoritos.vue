@@ -23,6 +23,7 @@ onMounted(async () => {
     usersStore.loadFavMeals(); // Cargar los datos de favoritos desde el LocalStorage
     favs.value = usersStore.favMeals;
     usersStore.getFavs();
+    usersStore.getUserName();
     
 });
 

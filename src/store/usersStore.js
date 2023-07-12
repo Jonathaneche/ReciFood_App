@@ -9,6 +9,7 @@ export const useUsersStore = defineStore("UsersStore", {
   state: () => ({
     favMeals: [],
     favMealsDetalles: [],
+    userName: "",
   }),
   actions: {
     //Esta funcion obtine los ids de recetas agregadas a favoritos
@@ -62,6 +63,20 @@ export const useUsersStore = defineStore("UsersStore", {
       } catch (error) {
         console.error("Error retrieving meal details:", error);
         throw error;
+      }
+    },
+    async getUserName() {
+      try {
+        const user_id = getAuth().currentUser.uid;
+        const response = await axios.get(
+          `http://127.0.0.1:5000/get_user_name/${user_id}`
+        );
+        this.userName = response.data.nombre;
+        console.log("3. Nombre ", this.userName);
+
+        return this.userName;
+      } catch (error) {
+        console.error(error);
       }
     },
   },

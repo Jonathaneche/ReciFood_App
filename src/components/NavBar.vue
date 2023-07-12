@@ -33,7 +33,7 @@
             </ul>
             
             <ul class="navbar-nav ms-auto nav_login">
-                <p v-if="isLoggedIn">Hola Bienvenido</p>
+                <p v-if="isLoggedIn"><strong>Bienvenid@ {{ userName }}</strong> </p>
                 <a class="nav-item nav-link mx-2 " @click="handleSignOut" v-if="isLoggedIn" ><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
                 <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 " v-if="isLoggedIn != true"><i class="fa-solid fa-user pe-1" ></i>Log in</router-link>
             
@@ -46,12 +46,26 @@
 
 <script setup>
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from '../router'
-const isLoggedIn = ref(false)
+import { useUsersStore } from '@/store/usersStore';
 
+const usersStore = useUsersStore();
+const userName = ref("")
+
+onMounted(async () => {
+    usersStore.getUserName();
+});
+
+watch(() => usersStore.userName, (newUserName) => {
+    userName.value = newUserName;
+});
+
+const isLoggedIn = ref(false)
 let auth;
+
+
 
 onMounted(() => {
     auth = getAuth();
