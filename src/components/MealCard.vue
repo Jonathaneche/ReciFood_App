@@ -4,9 +4,11 @@
       <div class="imagen-contenedor">
         <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
         <div class=" circle">
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" @click.prevent="isUserLogged(meal.idMeal)"></i>
         </div>
+        
       </div>
+      
       
       <div class="card-body">
         <h5 class="card-title">{{ meal.strMeal }}</h5>
@@ -30,13 +32,36 @@
 
 <script setup>
 import { useMealsStore } from '../store/mealsStore';
+import { getAuth } from "firebase/auth" // Para ver el id del usuario registrado
 import { defineProps } from 'vue'
+import axios from 'axios';
+
+import { ref } from 'vue';
+import {  onAuthStateChanged} from 'firebase/auth';
+const isLoggedIn = ref(false)
+
+let auth;
+
+function isUserLogged(meal_id) {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+      AddToFavDB(meal_id)
+    } else {
+      isLoggedIn.value = false;
+      alert("Por favor inicia session")
+    }
+  });
+}
 
 const mealsStore = useMealsStore();
+
 
 function saveMealDetails(id) {
   try {
     mealsStore.saveMeal(id)
+    console.log(id)
   } catch (error) {
     console.error('Error retrieving meals by category:', error);
   }
@@ -48,6 +73,32 @@ defineProps({
     required: true,
   },
 })
+
+
+
+function AddToFavDB(meal_id) {
+
+  const user_id = getAuth().currentUser.uid;
+  // Crear el objeto de datos a enviar al servidor
+  const favMealData = {
+    user_id,
+    meal_id   
+    
+  };
+  console.log(favMealData)
+
+  // Realiza una solicitud POST al backend Flask para agregar el favorito
+  axios.post('http://127.0.0.1:5000/add_favorite',  favMealData )
+    .then(response => {
+      console.log(response.data); // Maneja la respuesta del servidor si es necesario
+    })
+    .catch(error => {
+      console.error(error); // Maneja el error si es necesario
+    });
+}
+
+
+
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
-import axios from "axios";
+//import axios from "axios";
 
 export const useUsersStore = defineStore("UsersStore", {
-  state: () => ({}),
+  state: () => ({
+    favMealsPinia: [],
+  }),
   actions: {},
 });
