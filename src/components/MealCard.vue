@@ -77,24 +77,20 @@ defineProps({
   right: 0;
   padding: 1rem;
   color: white; /* Cambia el color del corazón según tus preferencias */
-  font-size: 1rem; /* Ajusta el tamaño del corazón según tus preferencias */
-  background-color: red;
+  font-size: 1.5rem; /* Ajusta el tamaño del corazón según tus preferencias */
+  background-color: rgb(201, 195, 195);
   border-radius: 50%;
-}
-
-.circle {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 50%;
-  background-color: rgb(201, 195, 195);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 1.5rem;
   margin: .6rem;
 }
 
+.circle:hover {
+  color: red;
+}
 
 .youtube{
     font-size: 2rem;

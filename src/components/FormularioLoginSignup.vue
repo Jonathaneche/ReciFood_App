@@ -244,7 +244,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #ffe6df;
+  background-color: #f5e7c0;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -339,7 +339,7 @@ form.sign-up-form {
 }
 
 .toggle:hover {
-  color: #8371fd;
+  color: $logo_color;
 }
 
 .input-wrap {
@@ -397,7 +397,7 @@ label {
 }
 
 .sign-btn:hover {
-  background-color: #8371fd;
+  background-color:$logo_color;
 }
 
 .text {
@@ -411,7 +411,7 @@ label {
 }
 
 .text a:hover {
-  color: #8371fd;
+  color: $logo_color;
 }
 
 main.sign-up-mode form.sign-in-form {
@@ -438,7 +438,7 @@ main.sign-up-mode .carousel {
   width: 55%;
   left: 45%;
   top: 0;
-  background-color: #ffe0d2;
+  background-color: #f5e7c0;
   border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
