@@ -2,9 +2,9 @@
 <NavBar/>
     <div>
         <main class="container">
-            <h1>Tus comidas favovitas estan aqui:</h1>
+            <h1>¡Tus comidas favovitas estan aqui!</h1>
 
-            <DashboardFavoritos/>
+            <FavsMealsGallery/>
 
 
         </main>
@@ -13,7 +13,7 @@
 
 <script setup>
 import NavBar from "../components/NavBar.vue"
-import DashboardFavoritos from "@/components/DashboardFavoritos.vue";
+import FavsMealsGallery from "@/components/FavsMealsGallery.vue";
 
 
 </script>

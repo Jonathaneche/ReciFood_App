@@ -12,16 +12,16 @@
       
       <div class="card-body">
         <h5 class="card-title">{{ meal.strMeal }}</h5>
-        <p class="card-text">
+        <!-- <p class="card-text">
           {{ meal.strInstructions }}
-        </p>
+        </p> -->
         <div class="d-flex justify-content-around">
-          <a :href="meal.strYoutube" ><i class="fa-brands fa-youtube youtube"></i></a>
+          
 
           
 
             <button class="btn-detalles"><router-link :to="{ name: 'meal-details' }"
-              @click="saveMealDetails(meal.idMeal)">Detalles</router-link>
+              @click="saveMealDetails(meal.idMeal)">Ver receta</router-link>
             </button>
         </div>
       </div>
@@ -143,10 +143,7 @@ function AddToFavDB(meal_id) {
   color: red;
 }
 
-.youtube{
-    font-size: 2rem;
-    color: rgba(255, 0, 0, 0.822);
-}
+
 
 .btn-detalles a{
   text-decoration: none;
@@ -161,7 +158,7 @@ function AddToFavDB(meal_id) {
  transition: all 0.2s ease-in;
  position: relative;
  overflow: hidden;
- font-size: 0.9rem;
+ font-size: 1.5rem;
  color: black;
  z-index: 1;
 }

@@ -10,12 +10,15 @@ export const useUsersStore = defineStore("UsersStore", {
     favMeals: [],
     favMealsDetalles: [],
     userName: "",
+    userId: "",
   }),
   actions: {
     //Esta funcion obtine los ids de recetas agregadas a favoritos
     async getFavs() {
       try {
         const user_id = getAuth().currentUser.uid;
+        this.userId = user_id;
+        console.log("User logged", this.userId);
         const response = await axios.get(
           `http://127.0.0.1:5000/get_all_favs/${user_id}`
         );
@@ -42,6 +45,7 @@ export const useUsersStore = defineStore("UsersStore", {
         this.favMeals = JSON.parse(favMealsData);
       }
     },
+    //Obtiene los detalles de cada receta:
     async getMealDetails() {
       try {
         const mealDetails = [];
@@ -77,6 +81,23 @@ export const useUsersStore = defineStore("UsersStore", {
         return this.userName;
       } catch (error) {
         console.error(error);
+      }
+    },
+    //elimiminar una receta favorita:
+    deleteFavMeal(idMeal) {
+      const user_id = getAuth().currentUser.uid;
+      //console.log("Meal deleted", user_id, idMeal)
+      try {
+        const response = axios.delete(
+          `http://127.0.0.1:5000/delete_fav_meal/${user_id}/${idMeal}`
+        );
+
+        if (response.status === 200) {
+          console.log("Meal deleted correctly");
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
       }
     },
   },

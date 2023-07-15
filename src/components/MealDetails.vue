@@ -8,11 +8,14 @@
                     <img :src="meal.strMealThumb" :alt="meal.strMeal" class="meal_details_image mb-3 ">
                 
                     <div class="meal_details_group_info">
-                        <div>
-                            <strong >Category:</strong> {{ meal.strCategory }}
+                        <div class="grupo">
+                            <strong >Category:</strong> <span>{{ meal.strCategory }}</span>
                         </div>
-                        <div>
-                            <strong >Area:</strong> {{ meal.strArea }}
+                        <div class="grupo">
+                            <strong >Area:</strong> <span>{{ meal.strArea }}</span>
+                        </div>
+                        <div class="grupo youtube">
+                            <span >Ver en:</span><a :href="meal.strYoutube" target="_blank">  <i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -44,11 +47,7 @@
                 <h3 >Instructions:</h3>
                 <p>{{ meal.strInstructions }}</p>
             </div>
-            <br><hr>
-            <pre>{{ meal }}</pre>
-        </div>
-
-        
+        </div>    
     </div>
 
 
@@ -123,10 +122,28 @@ watch(() => mealsStore.meal, (newMeal) => {
     grid-column-end: 4;
 }
 
+.youtube{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.youtube i{
+    font-size: 2rem;
+    color: rgba(255, 0, 0, 0.822);
+}
+
+.youtube span{
+    font-weight: 500;
+}
+
+
 /* Estilos para dispositivos tablets */
 
 @media (max-width: 768px) {
-
+    .meal_details_group_info .grupo{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
