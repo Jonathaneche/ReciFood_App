@@ -1,14 +1,21 @@
 export default function favoritos() {
-  const circle = document.querySelector(".circle");
-  const icon = document.querySelector("svg");
+  const circles = document.querySelectorAll(".circle");
 
-  circle.addEventListener("click", () => {
-    circle.classList.toggle("clicked");
-    if (circle.classList.contains("clicked")) {
-      icon.classList.add("like");
+  circles.forEach((circle) => {
+    const corazonSVG = circle.querySelector("svg");
+
+    if (!corazonSVG) {
+      return; // Si el elemento svg no está presente, salimos de la iteración
     }
-    setTimeout(() => {
-      icon.classList.remove("like");
-    }, 1500);
+
+    circle.addEventListener("click", () => {
+      circle.classList.toggle("clicked");
+      if (circle.classList.contains("clicked")) {
+        corazonSVG.classList.add("like");
+      }
+      setTimeout(() => {
+        corazonSVG.classList.remove("like");
+      }, 1500);
+    });
   });
 }

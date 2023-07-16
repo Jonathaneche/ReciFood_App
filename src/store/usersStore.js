@@ -11,6 +11,7 @@ export const useUsersStore = defineStore("UsersStore", {
     favMealsDetalles: [],
     userName: "",
     userId: "",
+    isLoggedIn: false,
   }),
   actions: {
     //Esta funcion obtine los ids de recetas agregadas a favoritos
@@ -71,14 +72,17 @@ export const useUsersStore = defineStore("UsersStore", {
     },
     async getUserName() {
       try {
-        const user_id = getAuth().currentUser.uid;
-        const response = await axios.get(
-          `http://127.0.0.1:5000/get_user_name/${user_id}`
-        );
-        this.userName = response.data.nombre;
-        console.log("3. Nombre ", this.userName);
+        const currentUser = getAuth().currentUser;
+        if (currentUser) {
+          const user_id = currentUser.uid;
+          const response = await axios.get(
+            `http://127.0.0.1:5000/get_user_name/${user_id}`
+          );
+          this.userName = response.data.nombre;
+          console.log("3. Nombre ", this.userName);
 
-        return this.userName;
+          return this.userName;
+        }
       } catch (error) {
         console.error(error);
       }

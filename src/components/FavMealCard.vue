@@ -39,14 +39,15 @@
 
 <script setup>
 import { defineProps } from 'vue' 
-import { useUsersStore } from '../store/usersStore'
+//import { useUsersStore } from '../store/usersStore'
 import { useMealsStore } from '../store/mealsStore'
 
-const usersStore = useUsersStore();
+//const usersStore = useUsersStore();
 const mealsStore = useMealsStore();
 
 function deleteFromFavs(idMeal) {
-    usersStore.deleteFavMeal(idMeal);
+  console.log("Receta borrada", idMeal)
+    // usersStore.deleteFavMeal(idMeal);
     }
 
 

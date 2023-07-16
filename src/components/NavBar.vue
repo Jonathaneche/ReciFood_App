@@ -18,7 +18,10 @@
                 <a class="nav-link mx-2" href="#">About</a>
             </li>
             <li class="nav-item">
-                <router-link :to="{ name: 'dashboard' }" class="nav-link mx-2" v-if="isLoggedIn" >Dashboard</router-link>
+                <router-link :to="{ name: 'dashboard' }" class="nav-link mx-2" v-if="isLoggedIn && !isAdmin" >Dashboard</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link :to="{ name: 'dashboard' }" class="nav-link mx-2" v-if="isAdmin" >Admin</router-link>
             </li>
             <!-- <li class="nav-item dropdown">
                 <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,7 +36,7 @@
             </ul>
             
             <ul class="navbar-nav ms-auto nav_login">
-                <p v-if="isLoggedIn"><strong>Bienvenid@ {{ userName }}</strong> </p>
+                <!-- <p v-if="isLoggedIn"><strong>Bienvenid@ {{ userName }}</strong> </p> -->
                 <a class="nav-item nav-link mx-2 " @click="handleSignOut" v-if="isLoggedIn" ><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
                 <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 " v-if="isLoggedIn != true"><i class="fa-solid fa-user pe-1" ></i>Log in</router-link>
             
@@ -63,6 +66,7 @@ watch(() => usersStore.userName, (newUserName) => {
 });
 
 const isLoggedIn = ref(false)
+const isAdmin = ref(false);
 let auth;
 
 
@@ -72,18 +76,22 @@ onMounted(() => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             isLoggedIn.value = true;
+            // Verificar si el userId es igual a "123ass654123"
+            isAdmin.value = user.uid === "5RNhjzfJiBOKrCaTHCuEXfX8OZC3";
         } else {
             isLoggedIn.value = false;
+            isAdmin.value = false; // Restablecer isAdmin si el usuario no está autenticado
         }
     });
-})
+});
 
 
 const handleSignOut = () => {
     signOut(auth).then(() => {
-        router.push("/")
-    })
-}
+        usersStore.isLoggedIn = false; // Actualizar el estado isLoggedIn en el store
+        router.push("/");
+    });
+};
 
 
 </script>

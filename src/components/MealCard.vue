@@ -3,11 +3,19 @@
     <div class="card">
       <div class="imagen-contenedor">
         <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
-        <div class=" circle">
-          <i class="fas fa-heart" @click.prevent="isUserLogged(meal.idMeal)"></i>
+        <div class=" circle" ref="circleRef">
+          <i class="fas fa-heart " @click.prevent="isUserLogged(meal.idMeal)"></i>
         </div>
+        <svg xmlns="http://www.w3.org/2000/svg" 
+          arial-label= "Me gusta" roll= "img"
+          fill="white"  viewBox="0 0 24 24"
+          ref="iconRef">
+          <title>Me gusta</title>
+        <path d="M12 21.35L3.54 12.88C2.35 11.69 1.7 10.2 1.7 8.59C1.7 5.92 3.92 3.7 6.59 3.7C8.2 3.7 9.69 4.35 10.88 5.54L12 6.76L13.12 5.54C14.31 4.35 15.8 3.7 17.41 3.7C20.08 3.7 22.3 5.92 22.3 8.59C22.3 10.2 21.65 11.69 20.46 12.88L12 21.35Z"/>
+        </svg>
         
       </div>
+
       
       
       <div class="card-body">
@@ -16,9 +24,6 @@
           {{ meal.strInstructions }}
         </p> -->
         <div class="d-flex justify-content-around">
-          
-
-          
 
             <button class="btn-detalles"><router-link :to="{ name: 'meal-details' }"
               @click="saveMealDetails(meal.idMeal)">Ver receta</router-link>
@@ -32,13 +37,15 @@
 
 <script setup>
 import { useMealsStore } from '../store/mealsStore';
+import { useUsersStore } from "@/store/usersStore";
 import { getAuth } from "firebase/auth" // Para ver el id del usuario registrado
 import { defineProps } from 'vue'
-import axios from 'axios';
-
 import { ref } from 'vue';
-import {  onAuthStateChanged} from 'firebase/auth';
-const isLoggedIn = ref(false)
+import { onAuthStateChanged } from 'firebase/auth';
+
+
+const mealsStore = useMealsStore();
+const usersStore = useUsersStore();
 
 let auth;
 
@@ -46,16 +53,17 @@ function isUserLogged(meal_id) {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      isLoggedIn.value = true;
-      AddToFavDB(meal_id)
+      usersStore.isLoggedIn = true; // Actualizar el estado isLoggedIn en el store
+      toggleLike();
+      AddToFavDB(meal_id);
+      console.log("Puedes agregar recetas")
     } else {
-      isLoggedIn.value = false;
-      alert("Por favor inicia session")
+      usersStore.isLoggedIn = false; // Actualizar el estado isLoggedIn en el store
     }
   });
 }
 
-const mealsStore = useMealsStore();
+
 
 
 function saveMealDetails(id) {
@@ -67,6 +75,49 @@ function saveMealDetails(id) {
   }
 }
 
+
+
+const circleRef = ref(null);
+const iconRef = ref(null);
+
+function toggleLike() {
+  circleRef.value.classList.toggle('clicked');
+  if (circleRef.value.classList.contains('clicked')) {
+    iconRef.value.classList.add('like');
+  }
+  setTimeout(() => {
+    iconRef.value.classList.remove('like');
+  }, 1500);
+}
+
+
+function AddToFavDB(meal_id) {
+
+  const user_id = getAuth().currentUser.uid;
+  // Crear el objeto de datos a enviar al servidor
+
+  console.log("Comida agregada", meal_id, user_id)
+
+  //Descomentar para habilitar agregar a favoritos
+
+  // const favMealData = {
+  //   user_id,
+  //   meal_id   
+    
+  // };
+  // console.log(favMealData)
+
+  // // Realiza una solicitud POST al backend Flask para agregar el favorito
+  // axios.post('http://127.0.0.1:5000/add_favorite',  favMealData )
+  //   .then(response => {
+  //     console.log(response.data); // Maneja la respuesta del servidor si es necesario
+  //   })
+  //   .catch(error => {
+  //     console.error(error); // Maneja el error si es necesario
+  //   });
+}
+
+
 defineProps({
   meal: {
     type: Object,
@@ -75,43 +126,17 @@ defineProps({
 })
 
 
-
-function AddToFavDB(meal_id) {
-
-  const user_id = getAuth().currentUser.uid;
-  // Crear el objeto de datos a enviar al servidor
-  const favMealData = {
-    user_id,
-    meal_id   
-    
-  };
-  console.log(favMealData)
-
-  // Realiza una solicitud POST al backend Flask para agregar el favorito
-  axios.post('http://127.0.0.1:5000/add_favorite',  favMealData )
-    .then(response => {
-      console.log(response.data); // Maneja la respuesta del servidor si es necesario
-    })
-    .catch(error => {
-      console.error(error); // Maneja el error si es necesario
-    });
-}
-
-
-
 </script>
 
 <style lang="scss" scoped>
-
-.card-title{
+.card-title {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-
-.card-text{
+.card-text {
   font-size: .9rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -119,9 +144,46 @@ function AddToFavDB(meal_id) {
   overflow: hidden;
 }
 
-.imagen-contenedor{
+.imagen-contenedor {
   position: relative;
 }
+
+.imagen-contenedor svg {
+  position: absolute;
+  width: 150px;
+  pointer-events: none;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imagen-contenedor svg.like {
+  animation: 2s like ease-in-out;
+  opacity: 1; 
+}
+
+@keyframes like {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  15% {
+    opacity: 1;
+    scale: 1.2;
+  }
+  30% {
+    scale: .95;
+  }
+  45%, 80% {
+    scale: 1;
+  }
+  100% {
+    scale: 0;
+    opacity: 1;
+  }
+}
+
 .circle {
   position: absolute;
   bottom: 0;
@@ -143,7 +205,9 @@ function AddToFavDB(meal_id) {
   color: red;
 }
 
-
+.circle.clicked {
+  color: red;
+}
 
 .btn-detalles a{
   text-decoration: none;

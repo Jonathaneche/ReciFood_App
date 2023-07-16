@@ -37,7 +37,15 @@
 <script setup>
 import MealCard from '@/components/MealCard.vue'
 import { useMealsStore } from '../store/mealsStore';
-import { onMounted, watch, ref, computed } from 'vue';
+import { onMounted, watch, ref, computed  } from 'vue';
+
+import favoritos from '../js/efectoMeGusta';
+
+
+onMounted(() => {
+  favoritos();
+});
+
 
 //Variables utlizadas para mostrar meals
 const mealsStore = useMealsStore();
