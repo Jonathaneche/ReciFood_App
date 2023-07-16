@@ -1,5 +1,5 @@
 <template>
-    <button @click="scrollToTop()" id="btnVolverArriba" title="Volver arriba">Volver arriba</button>
+    <button @click="scrollToTop()" id="btnVolverArriba" title="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
 </template>
 
 <script setup>
@@ -30,7 +30,7 @@ function scrollToTop() {
 #btnVolverArriba {
     display: none; /* Oculta el botón inicialmente */
     position: fixed;
-    bottom: 100px;
+    bottom: 20px;
     right: 30px;
     z-index: 99;
     font-size: 16px;

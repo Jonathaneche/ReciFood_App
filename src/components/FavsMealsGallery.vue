@@ -1,6 +1,7 @@
 <template>
     <div class="contenedor-galeria">
-        <p>Tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
+
+        <p>{{ userName }}, Tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
         <!-- <pre>{{ favsDetalles }}</pre> -->
 
 
@@ -24,7 +25,12 @@ import FavMealCard from './FavMealCard.vue';
 const usersStore = useUsersStore();
 const favs = ref([]);
 
+const userName = ref("")
+userName.value = usersStore.userName;
 
+watch(() => usersStore.userName, (newUserName) => {
+  userName.value = newUserName;
+});
 
 onMounted(async () => {
     usersStore.loadFavMeals(); // Cargar los datos de favoritos desde el LocalStorage

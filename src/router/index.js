@@ -76,4 +76,12 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
+router.beforeEach(async (to, from, next) => {
+  if (to.name === "login" && (await getCurrentUser())) {
+    next({ name: "home" });
+  } else {
+    next();
+  }
+});
+
 export default router;
