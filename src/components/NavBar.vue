@@ -38,6 +38,7 @@
             <ul class="navbar-nav ms-auto nav_login">
                 <!-- <p v-if="isLoggedIn"><strong>Bienvenid@ {{ userName }}</strong> </p> -->
                 <a class="nav-item nav-link mx-2 " @click="handleSignOut" v-if="isLoggedIn" ><i class="fa-solid fa-right-from-bracket"></i>Log Out</a>
+                <img v-if="isLoggedIn" :src="userAvatar" class="nav-item nav-avatar mx-2" alt="Avatar" />
                 <router-link :to="{name: 'login'}" class="nav-item nav-link mx-2 " v-if="isLoggedIn != true"><i class="fa-solid fa-user pe-1" ></i>Log in</router-link>
             
             </ul>

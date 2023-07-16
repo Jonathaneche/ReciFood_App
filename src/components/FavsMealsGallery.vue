@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contenedor-galeria">
         <p>Tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
         <!-- <pre>{{ favsDetalles }}</pre> -->
 
@@ -67,6 +67,10 @@ function currentUser() {
 
 p{
     text-align: center;
+}
+
+.contenedor-galeria{
+  min-height: 100vh;
 }
 
 .wrapper {

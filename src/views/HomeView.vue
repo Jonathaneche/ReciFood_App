@@ -3,7 +3,7 @@
   <CarruselGallery />
   <h2>Recetas </h2>
   <MultipleMealCards/>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center mb-5">
     <router-link :to="{ name: 'meals' }" class="btn btn-success px-5">Ver mas recetas</router-link>
   </div>
  

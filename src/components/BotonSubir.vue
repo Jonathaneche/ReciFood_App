@@ -30,7 +30,7 @@ function scrollToTop() {
 #btnVolverArriba {
     display: none; /* Oculta el botón inicialmente */
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     right: 30px;
     z-index: 99;
     font-size: 16px;
@@ -45,9 +45,5 @@ function scrollToTop() {
 
 #btnVolverArriba:hover {
     background-color: #777;
-}
-
-section{
-  height: 100vh;
 }
 </style>

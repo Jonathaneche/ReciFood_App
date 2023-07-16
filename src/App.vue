@@ -1,11 +1,13 @@
 <template>
   <router-view/>
   <BotonSubir/>
+  <FooterComp/>
 </template>
 
 
 <script setup>
 import BotonSubir from "./components/BotonSubir"
+import FooterComp from "./components/FooterComp.vue";
 </script>
 
 
