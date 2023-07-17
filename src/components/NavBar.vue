@@ -12,7 +12,7 @@
                 <router-link :to="{ name:'home' }" class="nav-link mx-2" aria-current="page">Home</router-link>
             </li>
             <li class="nav-item">
-            <router-link :to="{ name: 'meals' }" class="nav-link mx-2">Meals recipes</router-link>
+                <router-link :to="{ name: 'meals' }" class="nav-link mx-2">Meals recipes</router-link>
             </li>
             <!-- <li class="nav-item"> 
                  <router-link :to="{ name: 'about' }" class="nav-link mx-2">About</router-link>
@@ -46,13 +46,14 @@
                     
                     
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item mx-2 " @click="handleSignOut" v-if="isLoggedIn" >Log Out</a></li>
+                    <li><a class="dropdown-item mx-1 " @click="handleSignOut" v-if="isLoggedIn" >Log Out</a></li>
                     </ul>
                 </li>
+                
             </ul>
         </div>
         </div>
-        <img v-if="isLoggedIn" src="../assets/img/avatars/chef-1.png" class="nav-item nav-avatar mx-2 avatar_user" alt="Avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
+        <img v-if="isLoggedIn" src="../assets/img/avatars/chef-1.png" class="nav-item nav-avatar mx-1 avatar_user" alt="Avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
     </nav>
 
     <!-- Modal -->

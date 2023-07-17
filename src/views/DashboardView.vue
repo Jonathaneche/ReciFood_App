@@ -15,7 +15,11 @@
 import NavBar from "../components/NavBar.vue"
 import FavsMealsGallery from "@/components/FavsMealsGallery.vue";
 
+import { onMounted } from 'vue'
 
+onMounted(() => {
+    window.scrollTo(0, 0);
+});
 </script>
 
 

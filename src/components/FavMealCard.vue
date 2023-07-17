@@ -1,7 +1,8 @@
 <template>
     <div class="item">
         <div class="polaroid">
-            <img :src="favMeal.strMealThumb">
+            <router-link :to="{ name: 'meal-details' }" class="imagen-enlace"
+                    @click="saveMealDetails(favMeal.idMeal)"><img :src="favMeal.strMealThumb"></router-link>
             <div class="caption">{{ favMeal.strMeal }}</div>
             <hr>
             <div class="icons mb-1">
@@ -93,10 +94,11 @@ body {
   background: #fff;
   padding: 1rem;
   border-radius: .5rem;
-  box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,0.2);
+  border: 2px solid rgba(195, 195, 195, 0.588);
+  box-shadow: 0 0.9rem 1.2rem rgba(0, 0, 0, 0.2);
   
 }
-.polaroid > img{
+.polaroid img{
   max-width: 100%;
   height: auto;
 }

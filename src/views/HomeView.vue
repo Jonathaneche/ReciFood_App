@@ -14,7 +14,11 @@
 import NavBar from '../components/NavBar.vue';
 import CarruselGallery from '../components/CarruselGallery.vue';
 import MultipleMealCards from '../components/MultipleMealCards.vue';
+import { onMounted } from 'vue'
 
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
 </script>
 
 <style lang="scss" scoped>

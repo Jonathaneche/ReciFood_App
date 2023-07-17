@@ -9,7 +9,7 @@ export const useUsersStore = defineStore("UsersStore", {
   state: () => ({
     favMeals: [],
     favMealsDetalles: [],
-    userName: "",
+    userName: "Hola",
     userId: "",
     isLoggedIn: false,
   }),

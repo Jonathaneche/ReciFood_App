@@ -64,6 +64,7 @@ mealDetails.value = mealsStore.meal
 
 onMounted(() => {
     mealsStore.getMealDetails()
+    window.scrollTo(0, 0);
 });
 
 // Observa cambios en mealsStore.meal y actualiza mealDetails.value

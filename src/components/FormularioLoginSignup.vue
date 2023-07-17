@@ -144,7 +144,6 @@ import { signInWithEmailAndPassword} from "firebase/auth"                //Para 
 import { useRouter } from 'vue-router'
 import axios from 'axios';
 
-
 onMounted(() => {
   setupUserForms();
 });

@@ -11,8 +11,8 @@
               <div class="col-xs-6 col-md-3">
                 <h6>Sections</h6>
                 <ul class="footer-links">
-                  <li><a href="">Home</a></li>
-                  <li><a href="">Meals Recipes</a></li>
+                  <li><router-link :to="{ name: 'home' }" class="nav-link mx-2" aria-current="page">Home</router-link></li>
+                  <li><router-link :to="{ name: 'meals' }" class="nav-link mx-2">Meals recipes</router-link></li>
                   <li><a href="">About</a></li>
                   
                 </ul>
