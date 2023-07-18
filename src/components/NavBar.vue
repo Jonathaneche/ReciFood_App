@@ -106,7 +106,7 @@ onMounted(() => {
         if (user) {
             isLoggedIn.value = true;
             // Verificar si el userId es igual a "123ass654123"
-            isAdmin.value = user.uid === "5RNhjzfJiBOKrCaTHCuEXfX8OZC3";
+            isAdmin.value = user.uid === "2rYuR8uoHqNxeKuWnmRlJeGqy6F3";
         } else {
             isLoggedIn.value = false;
             isAdmin.value = false; // Restablecer isAdmin si el usuario no está autenticado

@@ -2,7 +2,7 @@
 <NavBar/>
     <div>
         <main class="container">
-            <h1>¡Tus comidas favovitas estan aqui!</h1>
+
 
             <FavsMealsGallery/>
 

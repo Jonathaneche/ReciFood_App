@@ -42,6 +42,7 @@ import { getAuth } from "firebase/auth" // Para ver el id del usuario registrado
 import { defineProps } from 'vue'
 import { ref } from 'vue';
 import { onAuthStateChanged } from 'firebase/auth';
+import axios from "axios";
 
 
 const mealsStore = useMealsStore();
@@ -100,21 +101,21 @@ function AddToFavDB(meal_id) {
 
   //Descomentar para habilitar agregar a favoritos
 
-  // const favMealData = {
-  //   user_id,
-  //   meal_id   
+  const favMealData = {
+    user_id,
+    meal_id   
     
-  // };
-  // console.log(favMealData)
+  };
+  console.log(favMealData)
 
-  // // Realiza una solicitud POST al backend Flask para agregar el favorito
-  // axios.post('http://127.0.0.1:5000/add_favorite',  favMealData )
-  //   .then(response => {
-  //     console.log(response.data); // Maneja la respuesta del servidor si es necesario
-  //   })
-  //   .catch(error => {
-  //     console.error(error); // Maneja el error si es necesario
-  //   });
+  // Realiza una solicitud POST al backend Flask para agregar el favorito
+  axios.post('http://127.0.0.1:5000/add_favorite',  favMealData )
+    .then(response => {
+      console.log(response.data); 
+    })
+    .catch(error => {
+      console.error(error); 
+    });
 }
 
 
@@ -211,7 +212,8 @@ defineProps({
 
 .btn-detalles a{
   text-decoration: none;
-  color: #4f4f4f;
+  //color: #4f4f4f;
+  color: orangered;
   border: 0px ;
 }
 .btn-detalles {

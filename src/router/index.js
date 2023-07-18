@@ -11,27 +11,35 @@ const routes = [
   {
     path: "/meals",
     name: "meals",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MealsView.vue"),
+    meta: {
+      title: "ReciFood | Meals",
+    },
   },
   {
     path: "/meal-details",
     name: "meal-details",
     component: () => import("../views/MealDetailsView.vue"),
+    meta: {
+      title: "ReciFood | Meals Details",
+    },
   },
   {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),
+    meta: {
+      title: "ReciFood | Login",
+    },
   },
   {
     path: "/:pathMatch(.*)*",
     name: "not-found",
-
     component: () => import("../views/PageNotFoundView.vue"),
+    meta: {
+      title: "ReciFood | 404",
+    },
   },
   {
     path: "/dashboard",
@@ -39,6 +47,7 @@ const routes = [
     component: () => import("../views/DashboardView.vue"),
     meta: {
       requiresAuth: true,
+      title: "ReciFood | Dashboard",
     },
   },
 ];

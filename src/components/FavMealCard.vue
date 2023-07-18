@@ -40,15 +40,16 @@
 
 <script setup>
 import { defineProps } from 'vue' 
-//import { useUsersStore } from '../store/usersStore'
+import { useUsersStore } from '../store/usersStore'
 import { useMealsStore } from '../store/mealsStore'
 
-//const usersStore = useUsersStore();
+const usersStore = useUsersStore();
 const mealsStore = useMealsStore();
 
 function deleteFromFavs(idMeal) {
   console.log("Receta borrada", idMeal)
-    // usersStore.deleteFavMeal(idMeal);
+  usersStore.deleteFavMeal(idMeal);
+  window.location.reload();
     }
 
 
@@ -118,6 +119,7 @@ body {
   transition: all 0.35s;
 }
 .item:nth-of-type(4n+1) {
+  color: green;
   transform: scale(0.8, 0.8) rotate(2deg);
   transition: all 0.35s;
 }
@@ -156,6 +158,7 @@ body {
 .item:nth-of-type(4n+3) {
   transform: scale(0.8, 0.8) rotate(-3deg);
   transition: all 0.35s;
+  color: orangered;
 }
 .item:nth-of-type(4n+3) .polaroid:before {
   transform: rotate(-4deg);

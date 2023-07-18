@@ -1,25 +1,30 @@
 <template>
     <div class="contenedor-galeria">
 
-        <p>{{ userName }}, Tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
-        <!-- <pre>{{ favsDetalles }}</pre> -->
+      <div v-if="favsMeals && favsMeals.length == 0" class="sin-recetas-contenedor">
+        <p class="sin-recetas">Bienvenido <span>{{ userName }}</span>, aqui estaran tus recetas favoritas <i class="fas fa-heart "></i></p>
+      </div>
 
-
-        <div class="row p-5  bg-light wrapper" v-if= "favsMeals && favsMeals.length > 0">
-          <FavMealCard v-for="favMeal in favsMeals" :key="favMeal.idMeal" :favMeal="favMeal" />
+        <div v-else>
+          <h1>¡Tus comidas favovitas estan aqui!</h1>
+          <p v-if="favsMeals && favsMeals.length == 1"><strong>{{ userName }}</strong>, tiene {{ favsMeals.length }} comida favorita agregada!</p>
+          <p v-if="favsMeals && favsMeals.length > 1"><strong>{{ userName }}</strong>, tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
+          <!-- <pre>{{ favsDetalles }}</pre> -->
+          <div class="row p-5  bg-light wrapper" v-if= "favsMeals && favsMeals.length > 0">
+            <FavMealCard v-for="favMeal in favsMeals" :key="favMeal.idMeal" :favMeal="favMeal" />
+          </div>
         </div>
-        
-        <hr>
 
-        <button @click.prevent="currentUser">Usuario</button>
-        <p v-if="mensaje">{{ mensaje }}</p>
+        <hr>
+                <!-- <button @click.prevent="currentUser">Usuario</button>
+                <p v-if="mensaje">{{ mensaje }}</p> -->
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useUsersStore } from "@/store/usersStore";
-import { getAuth } from "firebase/auth";
+//import { getAuth } from "firebase/auth";
 import FavMealCard from './FavMealCard.vue';
 
 const usersStore = useUsersStore();
@@ -55,12 +60,12 @@ watch(() => usersStore.favMeals, (newFavMeals) => {
 
 
 
-const mensaje = ref("");
+// const mensaje = ref("");
 
-function currentUser() {
-    const usuario = getAuth().currentUser.uid;
-    mensaje.value = usuario;
-}
+// function currentUser() {
+//     const usuario = getAuth().currentUser.uid;
+//     mensaje.value = usuario;
+// }
 </script>
 
 <style lang="scss" scoped>
@@ -71,12 +76,24 @@ function currentUser() {
   box-sizing: border-box;
 }
 
-p{
+h1, p{
     text-align: center;
 }
 
+.sin-recetas-contenedor{
+  width: 100%;
+    min-height: 100vh;
+}
+
+.sin-recetas{
+  font-size: 2rem;
+}
+.fa-heart{
+  color: red;
+}
 .contenedor-galeria{
   min-height: 100vh;
+  
 }
 
 .wrapper {

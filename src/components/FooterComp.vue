@@ -33,7 +33,7 @@
             <div class="row">
               <div class="col-md-8 col-sm-6 col-xs-12">
                 <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
-             <a href="#">ReciFood</a>.
+             <a href="#">ReciFood</a>. App created by <strong class="created">Jonathan Echeverria</strong>
                 </p>
               </div>
 
@@ -55,6 +55,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+.created{
+  color: rgb(54, 54, 54);
+}
 .site-footer
 {
   background-color:#d5b78e;
@@ -62,6 +66,7 @@
   font-size:15px;
   line-height:24px; 
   color:#737373;
+  bottom: 0;
 }
 .site-footer hr
 {

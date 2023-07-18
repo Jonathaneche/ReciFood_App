@@ -98,7 +98,6 @@ export const useUsersStore = defineStore("UsersStore", {
 
         if (response.status === 200) {
           console.log("Meal deleted correctly");
-          window.location.reload();
         }
       } catch (error) {
         console.error("An error occurred:", error);
