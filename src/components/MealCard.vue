@@ -4,7 +4,7 @@
       <div class="imagen-contenedor">
         <img :src="meal.strMealThumb" :alt="meal.strMeal" class="card-img-top" />
         <div class=" circle" ref="circleRef">
-          <i class="fas fa-heart " @click.prevent="isUserLogged(meal.idMeal)"></i>
+          <i class="fas fa-heart " @click.prevent="isUserLogged(meal.idMeal)" ></i>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" 
           arial-label= "Me gusta" roll= "img"
@@ -26,7 +26,7 @@
         <div class="d-flex justify-content-around">
 
             <button class="btn-detalles"><router-link :to="{ name: 'meal-details' }"
-              @click="saveMealDetails(meal.idMeal)">Ver receta</router-link>
+              @click="saveMealDetails(meal.idMeal)">Meal recipe</router-link>
             </button>
         </div>
       </div>
@@ -147,8 +147,16 @@ defineProps({
 
 .imagen-contenedor {
   position: relative;
+  overflow: hidden;
 }
 
+.imagen-contenedor>img {
+  transition: transform 0.5s;
+}
+
+.imagen-contenedor:hover>img {
+    transform: scale(1.1);
+}
 .imagen-contenedor svg {
   position: absolute;
   width: 150px;

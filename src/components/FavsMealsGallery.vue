@@ -1,12 +1,12 @@
 <template>
-    <div class="contenedor-galeria">
+    <div class="contenedor-galeria mt-0 pt-4">
 
       <div v-if="favsMeals && favsMeals.length == 0" class="sin-recetas-contenedor">
-        <p class="sin-recetas">Bienvenido <span>{{ userName }}</span>, aqui estaran tus recetas favoritas <i class="fas fa-heart "></i></p>
+        <p class="sin-recetas ">Bienvenido <span>{{ userName }}</span>, aqui estaran tus recetas favoritas <i class="fas fa-heart "></i></p>
       </div>
 
         <div v-else>
-          <h1>¡Tus comidas favovitas estan aqui!</h1>
+          <h1 class="mt-0 pt-4">¡Tus comidas favovitas estan aqui!</h1>
           <p v-if="favsMeals && favsMeals.length == 1"><strong>{{ userName }}</strong>, tiene {{ favsMeals.length }} comida favorita agregada!</p>
           <p v-if="favsMeals && favsMeals.length > 1"><strong>{{ userName }}</strong>, tienes {{ favsMeals.length }} comidas favoritas agregadas!</p>
           <!-- <pre>{{ favsDetalles }}</pre> -->
@@ -93,7 +93,7 @@ h1, p{
 }
 .contenedor-galeria{
   min-height: 100vh;
-  
+  background-color: rgb(248,249,250);
 }
 
 .wrapper {

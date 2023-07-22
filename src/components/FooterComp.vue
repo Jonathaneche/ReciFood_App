@@ -9,22 +9,16 @@
               </div>
 
               <div class="col-xs-6 col-md-3">
-                <h6>Sections</h6>
-                <ul class="footer-links">
-                  <li><router-link :to="{ name: 'home' }" class="nav-link mx-2" aria-current="page">Home</router-link></li>
-                  <li><router-link :to="{ name: 'meals' }" class="nav-link mx-2">Meals recipes</router-link></li>
-                  <li><a href="">About</a></li>
-                  
-                </ul>
+                
               </div>
 
               <div class="col-xs-6 col-md-3">
-                <h6>More Links</h6>
-                <ul class="footer-links">
-                  <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                  <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                  <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                </ul>
+                <h6>Sections</h6>
+                  <ul class="footer-links">
+                    <li><router-link :to="{ name: 'home' }" class="nav-link mx-2" aria-current="page">Home</router-link></li>
+                    <li><router-link :to="{ name: 'meals' }" class="nav-link mx-2">Meals </router-link></li>
+                  
+                  </ul>
               </div>
             </div>
             <hr>
@@ -41,8 +35,7 @@
                 <ul class="social-icons">
                   <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                  <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+                  <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -210,7 +203,7 @@
 {
   background-color:#007bb6
 }
-.social-icons a.dribbble:hover
+.social-icons a.instagram:hover
 {
   background-color:#ea4c89
 }

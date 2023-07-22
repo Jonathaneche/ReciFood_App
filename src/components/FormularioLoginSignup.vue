@@ -144,6 +144,7 @@ import { signInWithEmailAndPassword} from "firebase/auth"                //Para 
 import { useRouter } from 'vue-router'
 import axios from 'axios';
 
+
 onMounted(() => {
   setupUserForms();
 });
@@ -156,10 +157,12 @@ const passwordSignin = ref("")
 const errMsg = ref()
 const router = useRouter();
 
+
 const register = () => {
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("Successfully registered!", data)
+      
       registerUserDB()
       router.push('/dashboard')
     })
@@ -243,7 +246,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #f5e7c0;
+  background-color: rgb(248,249,250);
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -257,7 +260,9 @@ main {
   height: 640px;
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 1px 11px 16px -11px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 11px 16px -11px rgba(0,0,0,0.75);
+box-shadow: 1px 11px 16px -11px rgba(0,0,0,0.75);
 }
 
 .inner-box {
@@ -437,7 +442,7 @@ main.sign-up-mode .carousel {
   width: 55%;
   left: 45%;
   top: 0;
-  background-color: #f5e7c0;
+  background-color:#d5b78e;
   border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;

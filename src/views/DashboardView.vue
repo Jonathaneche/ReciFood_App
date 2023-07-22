@@ -1,7 +1,7 @@
 <template>
 <NavBar/>
-    <div>
-        <main class="container">
+    <div class="fondo">
+        <main class="container pt-3">
 
 
             <FavsMealsGallery/>
@@ -28,11 +28,14 @@ onMounted(() => {
 .container{
     width: 90vw;
     margin: 0 auto;
-    margin-top: 2rem;
+    
 }
 
 h1{
     text-align: center;
 }
 
+   .fondo{
+    background-color: rgb(248,249,250);
+  }
 </style>

@@ -35,7 +35,7 @@
                         <ul>
                             <template v-for="(el, ind) of new Array(21)" :key="ind">
                                 <li v-if="meal[`strMeasure${ind + 1}`] && meal[`strMeasure${ind + 1}`].trim() !== ''">
-                                    {{ ind + 1 }}. {{ meal[`strMeasure${ind + 1}`] }}
+                                - {{ meal[`strMeasure${ind + 1}`] }}
                                 </li>
                             </template>
                         </ul>

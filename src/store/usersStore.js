@@ -9,9 +9,10 @@ export const useUsersStore = defineStore("UsersStore", {
   state: () => ({
     favMeals: [],
     favMealsDetalles: [],
-    userName: "Hola",
+    userName: "Dan",
     userId: "",
     isLoggedIn: false,
+    userAvatar: "chef-1",
   }),
   actions: {
     //Esta funcion obtine los ids de recetas agregadas a favoritos
@@ -25,6 +26,7 @@ export const useUsersStore = defineStore("UsersStore", {
         );
         this.favMeals = response.data.data;
         console.log("1. Funcion getFavs ", this.favMeals);
+        this.getUserName();
         await this.getMealDetails(); // Llamar a getMealDetails después de actualizar favMeals
         return this.favMeals;
       } catch (error) {
@@ -79,9 +81,12 @@ export const useUsersStore = defineStore("UsersStore", {
             `http://127.0.0.1:5000/get_user_name/${user_id}`
           );
           this.userName = response.data.nombre;
-          console.log("3. Nombre ", this.userName);
+          this.userAvatar = response.data.userAvatar;
+          console.log("Registro ", response.data);
+          console.log("1. Nombre ", this.userName);
+          console.log("2. avatar ", this.userAvatar);
 
-          return this.userName;
+          return this.userName, this.userAvatar;
         }
       } catch (error) {
         console.error(error);
@@ -101,6 +106,18 @@ export const useUsersStore = defineStore("UsersStore", {
         }
       } catch (error) {
         console.error("An error occurred:", error);
+      }
+    },
+    updateAvatar() {
+      const user_id = getAuth().currentUser.uid;
+      const avatar_id = this.userAvatar;
+      try {
+        axios.patch(`http://127.0.0.1:5000/update_avatar/${user_id}`, {
+          userAvatar: avatar_id,
+        });
+        console.log("AvatarActualizado");
+      } catch (error) {
+        console.log(error);
       }
     },
   },

@@ -1,11 +1,13 @@
 <template>
-  <NavBar />
-  <CarruselGallery />
-  <h2>Recetas </h2>
-  <MultipleMealCards/>
-  <div class="d-flex justify-content-center mb-5">
-    <router-link :to="{ name: 'meals' }" class="btn btn-success px-5">Ver mas recetas</router-link>
-  </div>
+<div class="fondo">
+    <NavBar />
+    <CarruselGallery />
+    <h2 >Recetas </h2>
+    <MultipleMealCards/>
+    <div class="d-flex justify-content-center pb-5">
+      <router-link :to="{ name: 'meals' }" class="btn btn-success px-5">Ver mas recetas</router-link>
+    </div>
+</div>
  
   
 </template>
@@ -28,5 +30,9 @@ h2 {
     margin: 0 auto;
     margin-top: 2rem;
     text-align: center;
+  }
+
+   .fondo{
+    background-color: rgb(248,249,250);
   }
 </style>
