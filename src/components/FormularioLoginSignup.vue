@@ -12,7 +12,7 @@
                 <div class="heading">
                   <h2>Welcome Back</h2>
                   <h6>Not registred yet?</h6>
-                  <a href="#" class="toggle">Sign up</a>
+                  <a href="#" class="toggle"> Sign up</a>
                 </div>
 
                 <div class="actual-form">
@@ -58,7 +58,7 @@
                 <div class="heading">
                   <h2>Get Started</h2>
                   <h6>Already have an account?</h6>
-                  <a href="#" class="toggle">Sign in</a>
+                  <a href="#" class="toggle"> Sign in</a>
                 </div>
 
                 <div class="actual-form">
@@ -335,7 +335,7 @@ form.sign-up-form {
 }
 
 .toggle {
-  color: #151111;
+  color: $logo_color;
   text-decoration: none;
   font-size: 0.75rem;
   font-weight: 500;

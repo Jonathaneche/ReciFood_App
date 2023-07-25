@@ -22,7 +22,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div>
-                    <h5 class="titulo-modal" id="exampleModalLabel">Do you want to delete this meal?</h5>
+                    <h5 class="titulo-modal" id="exampleModalLabel">{{ userName }}, do you want to delete this meal?</h5>
                 </div>
                 <div class="modal-body">
                     <img class="modal-imagen-meal" :src="favMeal.strMealThumb">
@@ -39,12 +39,15 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue' 
+import { defineProps, ref } from 'vue' 
 import { useUsersStore } from '../store/usersStore'
 import { useMealsStore } from '../store/mealsStore'
 
 const usersStore = useUsersStore();
 const mealsStore = useMealsStore();
+
+const userName = ref("")
+userName.value = usersStore.userName;
 
 function deleteFromFavs(idMeal) {
   console.log("Receta borrada", idMeal)

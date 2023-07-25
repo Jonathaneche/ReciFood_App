@@ -3,6 +3,7 @@
 
       <div v-if="favsMeals && favsMeals.length == 0" class="sin-recetas-contenedor">
         <p class="sin-recetas ">Bienvenido <span>{{ userName }}</span>, aqui estaran tus recetas favoritas <i class="fas fa-heart "></i></p>
+        
       </div>
 
         <div v-else>
