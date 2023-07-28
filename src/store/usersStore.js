@@ -9,20 +9,20 @@ export const useUsersStore = defineStore("UsersStore", {
   state: () => ({
     favMeals: [],
     favMealsDetalles: [],
-    userName: "Dan",
+    userName: "User",
     userId: "",
     isLoggedIn: false,
     userAvatar: "chef-1",
   }),
   actions: {
-    //Esta funcion obtine los ids de recetas agregadas a favoritos
+    //Esta funcion obtine los ids de recetas agregadas a favoritos por el usuario en la base de datos
     async getFavs() {
       try {
         const user_id = getAuth().currentUser.uid;
         this.userId = user_id;
         console.log("User logged", this.userId);
         const response = await axios.get(
-          `http://127.0.0.1:5000/get_all_favs/${user_id}`
+          `http://127.0.0.1:5000/get_all_favs/${user_id}` //Buscando las recetas favoritas del usuario
         );
         this.favMeals = response.data.data;
         console.log("1. Funcion getFavs ", this.favMeals);

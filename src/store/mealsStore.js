@@ -62,21 +62,6 @@ export const useMealsStore = defineStore("MealsStore", {
       }
       this.loading = false;
     },
-    // Almacena varias recetas aleatorias en meals utilizando la accion getRandomMeals, las recetas quizas se puedan repiten
-    /*async getRandomMeals() {
-      this.loading = true;
-      for (let i = 0; i < 8; i++) {
-        try {
-          const response = await this.getRandomMeal();
-          if (this.meals.length < 8) {
-            this.meals.push(...response);
-          }
-        } catch (error) {
-          console.error("Error retrieving random meals:", error);
-        }
-      }
-      this.loading = false;
-    },*/
 
     //Hacer una busqueda de recetas seleccionando la categoria, y almacenarlas el resultado en meals
     async getMealsByCategory(category) {
